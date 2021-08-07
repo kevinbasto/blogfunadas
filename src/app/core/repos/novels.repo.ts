@@ -1,8 +1,9 @@
 import { Novel } from "../interfaces/novel.interface";
 
 export interface NovelsRepo{
-    createNovel( novel : Novel ) : Promise<any>;
-    getNovel( novelId : string ) : Promise<Novel>;
-    updateNovel( novelId : string, novel : Novel ) : Promise<any>;
-    deleteNovel( novelId : string ) : Promise<any>;
+    createNovel( genre : string, novel : Novel ) : Promise<any>;
+    getNovel( genre : string, novelId : string ) : Promise<Novel>;
+    updateNovel( genre : string, novelId : string, novel : Novel ) : Promise<any>;
+    deleteNovel( genre : string, novelId : string ) : Promise<any>;
+    getNovels( genre : string, pageSize : number, startAt : number ) : Promise<Array<Novel>>;
 }
