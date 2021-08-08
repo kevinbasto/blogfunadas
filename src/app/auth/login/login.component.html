@@ -1,1 +1,25 @@
-<p>login works!</p>
+<div class="card">
+    <div class="card-header">
+        <h1>Inicia sesión para la sabrosura</h1>
+    </div>
+    <form [formGroup]="loginForm" (submit)="login()">
+        <div class="card-body form-container">
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
+                <mat-label>Correo electrónico</mat-label>
+                <input matInput formControlName="email">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
+                <mat-label>Contraseña</mat-label>
+                <input matInput type="password" formControlName="password">
+            </mat-form-field>
+
+            <div class="link-container">
+                <span>¿No tienes cuenta? <a routerLink="/auth/register" class="link">Crear una cuenta</a></span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button mat-button color="primary" type="submit">Iniciar sesión</button>
+        </div>
+    </form>
+</div>

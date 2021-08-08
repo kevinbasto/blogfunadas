@@ -4,14 +4,24 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { RecoverComponent } from './recover/recover.component';
-
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, RecoverComponent],
+  declarations: [
+    LoginComponent, 
+    RegisterComponent, 
+    RecoverComponent
+  ],
   imports: [
     CommonModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatInputModule,
+    RouterModule
   ]
 })
 export class AuthModule { }
