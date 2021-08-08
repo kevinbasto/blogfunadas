@@ -18,7 +18,7 @@ const routes: Routes = [
     component: AuthComponent,
     children: [{
         path: '',
-        loadChildren: './auth/auth.module#AuthModule'
+        loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
       }]
   },
   {
@@ -26,7 +26,7 @@ const routes: Routes = [
     component: ClientComponent,
     children: [{
         path : '',
-        loadChildren: './client/client.module#ClientModule'
+        loadChildren: () => import('./client/client.module').then(m => m.ClientModule)
       }],
   },
   {
@@ -34,7 +34,7 @@ const routes: Routes = [
     component: AdminComponent,
     children: [{
         path: '',
-        loadChildren: './admin/admin.module#AdminModule'
+        loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
       }]
   },
   {
