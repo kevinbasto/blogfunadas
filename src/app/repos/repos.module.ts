@@ -1,4 +1,4 @@
-import { InjectionToken, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CHAPTERS_REPO, COMMENTS_REPO, GENRES_REPO, NOVELS_REPO, USERS_REPO } from './tokens';
