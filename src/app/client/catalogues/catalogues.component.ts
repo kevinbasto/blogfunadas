@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Genre } from '../../core/interfaces/genre.interface';
+import { GenresRepo } from '../../core/repos/genres.repo';
+import { GENRES_REPO } from '../../repos/tokens';
 
 @Component({
   selector: 'app-catalogues',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CataloguesComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(GENRES_REPO) private genreRepo : GenresRepo ) {
+
+  }
 
   ngOnInit(): void {
+    let genre : Genre;
+    this.genreRepo.createGenre(genre);
   }
 
 }

@@ -6,7 +6,9 @@ export class GenresRepoService implements GenresRepo {
 
   constructor() { }
 
-  async createGenre() : Promise<any> {}
+  async createGenre() : Promise<any> {
+    console.log("Hello my fellow friend!");
+  }
 
   async deleteGenre() : Promise<any> {}
 

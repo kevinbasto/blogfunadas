@@ -5,14 +5,21 @@ import { CataloguesComponent } from './catalogues/catalogues.component';
 import { NovelComponent } from './novel/novel.component';
 import { ChapterComponent } from './chapter/chapter.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ReposModule } from '../repos/repos.module';
 
 
 
 @NgModule({
-  declarations: [CataloguesComponent, NovelComponent, ChapterComponent, ProfileComponent],
+  declarations: [ 
+    CataloguesComponent, 
+    NovelComponent, 
+    ChapterComponent, 
+    ProfileComponent
+  ],
   imports: [
     CommonModule,
-    ClientRoutingModule
+    ClientRoutingModule,
+    ReposModule
   ]
 })
 export class ClientModule { }

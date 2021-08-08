@@ -35,6 +35,6 @@ import { CommentsRepoService } from './comments/comments-repo.service';
       provide: COMMENTS_REPO,
       useClass: CommentsRepoService
     }
-  ]
+  ],
 })
 export class ReposModule { }
