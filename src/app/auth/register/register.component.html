@@ -4,15 +4,15 @@
     </div>
     <form [formGroup]="registerForm" (submit)="register()">
         <div class="card-body form-container">
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
+            <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>Correo electrónico</mat-label>
                 <input matInput formControlName="email">
             </mat-form-field>
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
+            <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>Contraseña</mat-label>
                 <input matInput type="password" formControlName="password">
             </mat-form-field>
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
+            <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>Confirmar contraseña</mat-label>
                 <input matInput type="password" formControlName="confirmPassword">
             </mat-form-field>

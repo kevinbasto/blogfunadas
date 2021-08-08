@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-recover',
@@ -13,7 +13,9 @@ export class RecoverComponent implements OnInit {
   constructor(
     private formBuilder : FormBuilder
   ) {
-    this.recoverForm = this.formBuilder.group({})
+    this.recoverForm = this.formBuilder.group({
+      email : ["", [Validators.required]]
+    })
   }
 
   ngOnInit(): void {
