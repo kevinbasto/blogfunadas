@@ -2,7 +2,7 @@
     <div class="card-header">
         <h1>¡Registrate para poder acceder!</h1>
     </div>
-    <form [FormGroup]="registerForm">
+    <form [formGroup]="registerForm" (submit)="register()">
         <div class="card-body form-container">
             <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
                 <mat-label>Correo electrónico</mat-label>
@@ -10,15 +10,22 @@
             </mat-form-field>
             <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
                 <mat-label>Contraseña</mat-label>
-                <input matInput formControlName="password">
+                <input matInput type="password" formControlName="password">
             </mat-form-field>
             <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
                 <mat-label>Confirmar contraseña</mat-label>
-                <input matInput formControlName="confirmPassword">
+                <input matInput type="password" formControlName="confirmPassword">
             </mat-form-field>
+            <div class="link-container">
+                <div>
+                    <span><input type="checkbox">Acepto los términos y condiciones</span>
+                </div>
+                <span>¿Ya tienes una cuenta? <a [routerLink]="['/auth/login']" class="link">Inicia sesión para acceder</a></span>
+            </div>
+            
         </div>
         <div class="card-footer">
-            <button mat-button color="primary" type="submit">Registrarme</button>
+            <button mat-button color="primary" type="submit" [disabled]="!registerForm.valid || registerData.password != registerData.confirmPassword">Registrarme</button>
         </div>
     </form>
 </div>

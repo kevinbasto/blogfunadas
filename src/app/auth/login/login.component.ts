@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Login } from '../../core/interfaces/auth/login.interface';
 
@@ -22,13 +22,23 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
 
   login(){
     console.log(this.loginData);
+    
   }
 
   get loginData() : Login{
     return this.loginForm.value;
+  }
+
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get password () {
+    return this.loginForm.get('password')
   }
 }
