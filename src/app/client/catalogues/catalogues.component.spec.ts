@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReposModule } from '../../repos/repos.module';
 
 import { CataloguesComponent } from './catalogues.component';
 
@@ -8,7 +9,8 @@ describe('CataloguesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CataloguesComponent ]
+      declarations: [ CataloguesComponent ],
+      imports: [ ReposModule ]
     })
     .compileComponents();
   });

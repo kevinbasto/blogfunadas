@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Chapter } from '../../core/interfaces/chapter.interface';
 import { ChaptersRepo } from '../../core/repos/chapters.repo';
 
 @Injectable()
 export class ChaptersRepoService implements ChaptersRepo{
 
-  constructor() { }
+  constructor(
+    private angularFirestore : AngularFirestore
+  ) {}
 
-  async createChapter() : Promise<any> {}
+  async createChapter( genre : string, novel : string, chapter : Chapter) : Promise<any> {
+    
+  }
   
   async deleteChapter() : Promise<any> {}
   

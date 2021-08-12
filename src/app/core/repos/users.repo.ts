@@ -5,5 +5,5 @@ export interface UsersRepo{
     getUser( userId : string ) : Promise<User>;
     updateUser( userId : string, user : User ) : Promise<any>;
     deleteUser( userId : string ) : Promise<any>;
-    getUsers( pageSize : number, startAt : number ) : Promise<Array<User>>;
+    getUsers( startAt : number, pageSize : number ) : Promise<Array<User>>;
 }
