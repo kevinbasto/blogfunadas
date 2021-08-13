@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import { take } from 'rxjs/operators';
 import { DatabaseException } from '../../core/exceptions/database.exception';
 import { Novel } from '../../core/interfaces/novel.interface';
@@ -13,8 +13,11 @@ export class NovelsRepoService implements NovelsRepo{
   ) { }
 
   async createNovel( genre : string, novel : Novel ) : Promise<any> {
+    let id : string;
     await this.angularFirestore.collection(genre).add(novel)
+    .then( (res : DocumentReference) => id = res.id)
     .catch(error => { throw new DatabaseException(error); });
+    return id;
   }
   
   async getNovel( genre : string, novelId : string ) : Promise<Novel> {

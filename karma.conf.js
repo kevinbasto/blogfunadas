@@ -12,6 +12,7 @@ module.exports = function (config) {
       require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
+    logLevel: config.LOG_DEBUG,
     client: {
       jasmine: {
         // you can add configuration options for Jasmine here
@@ -30,7 +31,7 @@ module.exports = function (config) {
       reporters: [
         { type: 'html' },
         { type: 'text-summary' }
-      ]
+      ],
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,

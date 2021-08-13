@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import { take } from 'rxjs/operators';
 import { DatabaseException } from '../../core/exceptions/database.exception';
 import { Comment } from '../../core/interfaces/comment.interface';
@@ -13,8 +13,11 @@ export class CommentsRepoService implements CommentsRepo{
   ) { }
 
   async createComment( location : string, comment : Comment ) : Promise<any> {
+    let id : string;
     await this.angularFirestore.collection(location).add(comment)
+    .then( (res : DocumentReference) => id = res.id)
     .catch(error => { throw new DatabaseException(error); });
+    return id;
   }
   
   async getComment( location : string, commentId : string ) : Promise<Comment> {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import { take } from 'rxjs/operators';
 import { DatabaseException } from '../../core/exceptions/database.exception';
 import { Chapter } from '../../core/interfaces/chapter.interface';
@@ -12,9 +12,10 @@ export class ChaptersRepoService implements ChaptersRepo{
     private angularFirestore : AngularFirestore
   ) {}
 
-  async createChapter( genre : string, novel : string, chapterId : string, chapter : Chapter ) : Promise<any> {
+  async createChapter( genre : string, novel : string, chapterId : string, chapter : Chapter ) : Promise<boolean> {
     await this.angularFirestore.collection(genre).doc(novel).collection('chapters').doc(chapterId).set(chapter)
     .catch(error => { throw new DatabaseException(error); });
+    return true;
   }
   
   async getChapter( genre : string, novel : string, chapterId : string ) : Promise<Chapter> {

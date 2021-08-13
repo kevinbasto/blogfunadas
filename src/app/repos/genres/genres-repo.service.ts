@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import { take } from 'rxjs/operators';
 import { DatabaseException } from '../../core/exceptions/database.exception';
 import { Genre } from '../../core/interfaces/genre.interface';
@@ -13,10 +13,13 @@ export class GenresRepoService implements GenresRepo {
   ) { }
 
   async createGenre(genre : Genre) : Promise<any> {
+    let id : string;
     this.angularFirestore
     .collection('genres')
-    .doc(genre.name).set(genre)
+    .add(genre)
+    .then( (res : DocumentReference) => id = res.id)
     .catch(error => { throw new DatabaseException(error); });
+    return id;
   };
 
   async getGenre(genreId : string) : Promise<Genre> {
@@ -30,14 +33,16 @@ export class GenresRepoService implements GenresRepo {
     return genre;
   }
 
-  async editGenre(genreId : string, genre : Genre) : Promise<any> {
+  async editGenre(genreId : string, genre : Genre) : Promise<boolean> {
     await this.angularFirestore.collection('genres').doc(genreId).update(genre)
     .catch(error => { throw new DatabaseException(error); });
+    return true;
   }
 
-  async deleteGenre(genreId : string) : Promise<any> {
+  async deleteGenre(genreId : string) : Promise<boolean> {
     await this.angularFirestore.collection('genres').doc(genreId).delete()
     .catch(error => { throw new DatabaseException(error); });
+    return true;
   }
 
   async getGenres() : Promise<Array<Genre>> {

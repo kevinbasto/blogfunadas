@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import { User } from '../../core/interfaces/user.interface';
 import { UsersRepo } from '../../core/repos/users.repo';
 import { take } from 'rxjs/operators';
@@ -12,9 +12,12 @@ export class UsersRepoService implements UsersRepo{
     private angularFireStore : AngularFirestore
   ) { }
 
-  async createUser( user : User ) : Promise<any>{
-    this.angularFireStore.collection('users').add(user)
+  async createUser( user : User ) : Promise<string>{
+    let id : string;
+    await this.angularFireStore.collection('users').add(user)
+    .then( (res : DocumentReference) => { id = res.id })
     .catch(error => { throw new DatabaseException(error); });
+    return id;
   }
   
   async getUser( userId : string ) : Promise<User>{
