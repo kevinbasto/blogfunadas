@@ -1,18 +1,50 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { take } from 'rxjs/operators';
+import { Genre } from '../../core/interfaces/genre.interface';
 import { GenresRepo } from '../../core/repos/genres.repo';
 
 @Injectable()
 export class GenresRepoService implements GenresRepo {
 
-  constructor() { }
+  constructor(
+    private angularFirestore : AngularFirestore
+  ) { }
 
-  async createGenre() : Promise<any> {}
+  async createGenre(genre : Genre) : Promise<any> {
+    this.angularFirestore
+    .collection('genres')
+    .doc(genre.name).set(genre)
+    .catch(error => { throw error });
+  };
 
-  async deleteGenre() : Promise<any> {}
+  async getGenre(genreId : string) : Promise<Genre> {
+    let genre : Genre
+    await this.angularFirestore.collection('genres').doc(genreId)
+    .valueChanges()
+    .pipe(take(1))
+    .toPromise()
+    .then( (res : any) => genre = res )
+    .catch(error => { throw error });
+    return genre;
+  }
 
-  async editGenre() : Promise<any> {}
+  async editGenre(genreId : string, genre : Genre) : Promise<any> {
+    await this.angularFirestore.collection('genres').doc(genreId).update(genre)
+    .catch(error => { throw error });
+  }
 
-  async getGenre() : Promise<any> {}
+  async deleteGenre(genreId : string) : Promise<any> {
+    await this.angularFirestore.collection('genres').doc(genreId).delete()
+    .catch(error => { throw error })
+  }
 
-  async getGenres() : Promise<any> {}
+  async getGenres() : Promise<Array<Genre>> {
+    let genres : Array<Genre>
+    await this.angularFirestore.collection('genres').valueChanges()
+    .pipe(take(1)).toPromise()
+    .then( (res : any) => genres  = res)
+    .catch(error => { throw error });
+    return genres
+  }
 }

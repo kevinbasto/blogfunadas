@@ -1,4 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../../../environments/environment';
+import { ReposModule } from '../../repos/repos.module';
 
 import { NovelComponent } from './novel.component';
 
@@ -8,7 +12,12 @@ describe('NovelComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NovelComponent ]
+      declarations: [ NovelComponent ],
+      imports: [ 
+        ReposModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule
+      ]
     })
     .compileComponents();
   });

@@ -24,4 +24,8 @@ describe('UsersRepoService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should create a user without any problem', async () => {
+
+  });
 });

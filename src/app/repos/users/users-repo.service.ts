@@ -12,7 +12,8 @@ export class UsersRepoService implements UsersRepo{
   ) { }
 
   async createUser( user : User ) : Promise<any>{
-    this.angularFireStore.collection('users').add(user);
+    this.angularFireStore.collection('users').add(user)
+    .catch(error => { throw error });
   }
   
   async getUser( userId : string ) : Promise<User>{
@@ -43,7 +44,7 @@ export class UsersRepoService implements UsersRepo{
 
   async getUsers( page : number, pageSize : number) : Promise<Array<User>>{
     let users : Array<any>;
-    await this.angularFireStore.collection("users", ref => ref.startAt(page).limit(page * pageSize))
+    await this.angularFireStore.collection("users", ref => ref.startAt( ((page - 1) * pageSize) + 1).limit(page * pageSize))
     .valueChanges()
     .pipe(take(1))
     .toPromise()

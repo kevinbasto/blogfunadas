@@ -16,7 +16,7 @@ export class CataloguesComponent implements OnInit {
 
   ngOnInit(): void {
     let genre : Genre;
-    this.genreRepo.createGenre(genre);
+    
   }
 
 }
