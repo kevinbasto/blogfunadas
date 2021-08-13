@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from '../../core/interfaces/user.interface';
 import { UsersRepo } from '../../core/repos/users.repo';
 import { take } from 'rxjs/operators';
+import { DatabaseException } from '../../core/exceptions/database.exception';
 
 @Injectable()
 export class UsersRepoService implements UsersRepo{
@@ -13,7 +14,7 @@ export class UsersRepoService implements UsersRepo{
 
   async createUser( user : User ) : Promise<any>{
     this.angularFireStore.collection('users').add(user)
-    .catch(error => { throw error });
+    .catch(error => { throw new DatabaseException(error); });
   }
   
   async getUser( userId : string ) : Promise<User>{
@@ -24,21 +25,21 @@ export class UsersRepoService implements UsersRepo{
     .pipe(take(1))
     .toPromise()
     .then( (res : any ) => { user = res; } )
-    .catch(error => { throw error; });
+    .catch(error => { throw new DatabaseException(error); });
     return user;
   }
 
   async deleteUser( userId : string ) : Promise<boolean>{
     await this.angularFireStore.collection('users')
     .doc(userId).delete()
-    .catch(error => { throw error; });
+    .catch(error => { throw new DatabaseException(error); });
     return true;
   }
   
   async updateUser(userId : string, user : User) : Promise<boolean>{
     await this.angularFireStore.collection('users')
     .doc(userId).update(user)
-    .catch(error => { throw error; });
+    .catch(error => { throw new DatabaseException(error); });
     return true;
   }
 
@@ -48,7 +49,8 @@ export class UsersRepoService implements UsersRepo{
     .valueChanges()
     .pipe(take(1))
     .toPromise()
-    .then( res => users = res );
+    .then( res => users = res )
+    .catch(error => { throw new DatabaseException(error); });
     return users;
   }
   
