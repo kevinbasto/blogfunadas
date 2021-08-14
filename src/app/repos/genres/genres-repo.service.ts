@@ -12,13 +12,13 @@ export class GenresRepoService implements GenresRepo {
     private angularFirestore : AngularFirestore
   ) { }
 
-  async createGenre(genre : Genre) : Promise<any> {
+  async createGenre(genre : Genre) : Promise<string> {
     let id : string;
-    this.angularFirestore
+    await this.angularFirestore
     .collection('genres')
     .add(genre)
     .then( (res : DocumentReference) => id = res.id)
-    .catch(error => { throw new DatabaseException(error); });
+    .catch(error => { throw new DatabaseException(error);  });
     return id;
   };
 
