@@ -32,13 +32,6 @@ export class UsersRepoService implements UsersRepo{
     return user;
   }
 
-  async deleteUser( userId : string ) : Promise<boolean>{
-    await this.angularFireStore.collection('users')
-    .doc(userId).delete()
-    .catch(error => { throw new DatabaseException(error); });
-    return true;
-  }
-  
   async updateUser(userId : string, user : User) : Promise<boolean>{
     await this.angularFireStore.collection('users')
     .doc(userId).update(user)
@@ -46,6 +39,13 @@ export class UsersRepoService implements UsersRepo{
     return true;
   }
 
+  async deleteUser( userId : string ) : Promise<boolean>{
+    await this.angularFireStore.collection('users')
+    .doc(userId).delete()
+    .catch(error => { throw new DatabaseException(error); });
+    return true;
+  }
+  
   async getUsers( page : number, pageSize : number) : Promise<Array<User>>{
     let users : Array<any>;
     await this.angularFireStore.collection("users", ref => ref.startAt( ((page - 1) * pageSize) + 1).limit(page * pageSize))
