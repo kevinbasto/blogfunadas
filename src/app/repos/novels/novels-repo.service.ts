@@ -22,9 +22,9 @@ export class NovelsRepoService implements NovelsRepo{
   
   async getNovel( genre : string, novelId : string ) : Promise<Novel> {
     let novel : Novel
-    this.angularFirestore.collection(genre).doc(novelId).valueChanges()
+    await this.angularFirestore.collection(genre).doc(novelId).valueChanges()
     .pipe(take(1)).toPromise()
-    .then((res : any) => novel  = res)
+    .then((res : any) => novel = res)
     .catch(error => { throw new DatabaseException(error); });
     return novel
   }
