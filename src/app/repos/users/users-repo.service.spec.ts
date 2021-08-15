@@ -103,6 +103,11 @@ describe('UsersRepoService', () => {
       console.log(error);
       expect(error).toBeUndefined();
     });
+    await service.deleteUser(id)
+    .catch(error => {
+      console.log(error);
+      expect(error).toBeUndefined();
+    })
   });
 
   it('should successfully delete a object', async() => {
