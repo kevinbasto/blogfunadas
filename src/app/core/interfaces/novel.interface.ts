@@ -1,6 +1,6 @@
 export interface Novel{
     name : string;
-    chapters : string;
+    chapters : number;
     status : string;
     author : string;
     genreId : string;
