@@ -22,11 +22,8 @@ export class UsersRepoService implements UsersRepo{
   
   async getUser( userId : string ) : Promise<User>{
     let user : any
-    await this.angularFireStore.collection('users')
-    .doc(userId)
-    .valueChanges()
-    .pipe(take(1))
-    .toPromise()
+    await this.angularFireStore.collection('users').doc(userId)
+    .valueChanges().pipe(take(1)).toPromise()
     .then( (res : any ) => { user = res; } )
     .catch(error => { throw new DatabaseException(error); });
     return user;

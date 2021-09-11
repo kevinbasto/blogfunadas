@@ -1,6 +1,7 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 html, body { height: 100%; }
+
 body { 
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
@@ -17,39 +18,15 @@ body {
     display: flex;
 }
 
-.center-content{
+.horizontal-center{
     justify-content: center;
+}
+
+.vertical-center{
     align-items: center;
-}
-
-.card{
-    padding: 1rem;
-    border: 1px solid black;
-    border-radius: 1rem;
-}
-
-.card-header{
-    border-bottom: 1px solid black;
-}
-
-.card-body{
-    border-bottom: 1px solid black;
-}
-
-.card-footer{
-    padding: .5rem;
-}
-
-.form-container{
-    width: 100%;
-    padding-top: 1rem;
 }
 
 .link{
     text-decoration: none;
     color: #1976d2;
-}
-
-.link-container{
-    margin-bottom: 5px;
 }

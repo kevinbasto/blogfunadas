@@ -1,33 +1,50 @@
-<div class="card">
+<mat-card>
     <div class="card-header">
         <h1>Funadas no fansub</h1>
     </div>
     <form [formGroup]="loginForm" (submit)="login()">
-        <div class="card-body form-container">
-            <mat-form-field appearance="fill" style="width: 100%;">
-                <mat-label>Correo electrónico</mat-label>
-                <input matInput formControlName="email">
-                <mat-error *ngIf="email.invalid">
+        <div class="card-body">
+            <mat-form-field style="width: 100%;">
+                <mat-label>
+                    Correo electrónico
+                </mat-label>
+                <input type="text" matInput formControlName="email">
+                <mat-error *ngIf="email.hasError('email')">
                     ¡Introduce un correo electrónico válido!
                 </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="fill" style="width: 100%;">
-                <mat-label>Contraseña</mat-label>
-                <input matInput type="password" formControlName="password">
-                <mat-error *ngIf="password.invalid">
-                    ¡Introduce una contraseña con al menos 8 caracteres!
+                <mat-error *ngIf="email.hasError('required')">
+                    ¡Introduce tu correo electrónico!
                 </mat-error>
             </mat-form-field>
-            <div class="link-container">
-                <span>¿No tienes cuenta? <a routerLink="/auth/register" class="link">Crear una cuenta</a></span>
-            </div>
-            <div class="link-container">
-                <span>¿Olvidaste tu contraseña? <a routerLink="/auth/recover" class="link">Recuperar mi contraseña</a></span>
+            <mat-form-field style="width: 100%;">
+                <mat-label>
+                    Contraseña
+                </mat-label>
+                <input type="password" matInput formControlName="password">
+                <mat-error *ngIf="password.hasError('password')">
+                    ¡Introduce tu contraseña!
+                </mat-error>
+                <mat-error *ngIf="password.hasError('minlength')">
+                    ¡La contraseña no tiene al menos 8 caractéres!
+                </mat-error>
+            </mat-form-field>
+            <div style="width: 100%; padding-top: 1rem;">
+                <p>
+                    ¿No tienes cuenta?
+                    <a class="link" [routerLink]="['/auth/register']">
+                        Crear cuenta
+                    </a>
+                </p>
+                <p>
+                    ¿Olvidaste tu contraseña?
+                    <a class="link" [routerLink]="['/auth/recover']">
+                        Recuperar cuenta
+                    </a>
+                </p>
             </div>
         </div>
         <div class="card-footer">
-            <button mat-button color="primary" type="submit" [disabled]="!loginForm.valid">Iniciar sesión</button>
+            <button type="submit" mat-button color="primary" [disabled]="loginForm.invalid">Iniciar sesión</button>
         </div>
     </form>
-</div>
+</mat-card>

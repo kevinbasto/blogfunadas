@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
 
   login(){
     console.log(this.loginData);
-    
   }
 
   get loginData() : Login{
@@ -39,6 +38,6 @@ export class LoginComponent implements OnInit {
   }
 
   get password () {
-    return this.loginForm.get('password')
+    return this.loginForm.get('password');
   }
 }
