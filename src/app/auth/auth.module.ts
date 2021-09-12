@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from "@angular/material/card";
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -21,10 +22,13 @@ import { MatCardModule } from "@angular/material/card";
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
+    RouterModule,
+
+    // material imports
     MatButtonModule,
     MatInputModule,
-    RouterModule,
-    MatCardModule
+    MatCardModule,
+    MatCheckboxModule
   ]
 })
 export class AuthModule { }
