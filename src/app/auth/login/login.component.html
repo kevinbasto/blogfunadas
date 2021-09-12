@@ -42,9 +42,17 @@
                     </a>
                 </p>
             </div>
+            <div style="padding-bottom: .5rem;" *ngIf="message">
+                <p class="{{message.name}}">{{message.message}}</p>
+            </div>
         </div>
         <div class="card-footer">
-            <button type="submit" mat-button color="primary" [disabled]="loginForm.invalid">Iniciar sesión</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid || uploading">
+                <span *ngIf="!uploading">
+                    Iniciar sesión
+                </span>
+                <mat-spinner diameter="35" *ngIf="uploading"></mat-spinner>
+            </button>
         </div>
     </form>
 </mat-card>

@@ -6,11 +6,14 @@ import { RegisterComponent } from './register/register.component';
 import { RecoverComponent } from './recover/recover.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ServicesModule } from '../services/services.module';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from "@angular/material/card";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+
 
 @NgModule({
   declarations: [
@@ -23,12 +26,14 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     AuthRoutingModule,
     ReactiveFormsModule,
     RouterModule,
+    ServicesModule,
 
     // material imports
     MatButtonModule,
     MatInputModule,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressSpinnerModule
   ]
 })
 export class AuthModule { }
