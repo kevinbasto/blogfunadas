@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginServiceToken } from './services.token';
+import { AuthServicetoken, LoginServiceToken } from './services.token';
 import { LoginService } from './login/login.service';
+import { AuthService } from './auth/auth.service';
 
 
 
@@ -15,6 +16,10 @@ import { LoginService } from './login/login.service';
     {
       provide: LoginServiceToken,
       useClass: LoginService
+    },
+    {
+      provide: AuthServicetoken,
+      useClass: AuthService
     }
   ]
 })
