@@ -1,7 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RegisterComponent } from './register.component';
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -11,7 +13,9 @@ describe('RegisterComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ RegisterComponent ],
       imports: [
-        ReactiveFormsModule
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        MatCheckboxModule
       ]
     })
     .compileComponents();
