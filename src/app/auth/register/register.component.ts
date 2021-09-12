@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Register } from '../../core/interfaces/auth/register.interface';
+import { RegisterDto } from '../../core/interfaces/auth/register.interface';
 
 @Component({
   selector: 'app-register',
@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
     console.log(this.registerData);
   }
 
-  get registerData() : Register{
+  get registerData() : RegisterDto{
     return this.registerForm.value;
   }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { Login } from '../../core/interfaces/auth/login.interface';
+import { LoginDto } from '../../core/interfaces/auth/login.interface';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     console.log(this.loginData);
   }
 
-  get loginData() : Login{
+  get loginData() : LoginDto{
     return this.loginForm.value;
   }
 
