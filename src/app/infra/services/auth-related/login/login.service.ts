@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { LoginDto } from '../../../core/interfaces/auth/login.interface';
-import { SystemMessage } from '../../../core/interfaces/system-message';
-import { Login } from '../../../core/services/auth/login';
+import { LoginDto } from '../../../../core/interfaces/auth/login.interface';
+import { SystemMessage } from '../../../../core/interfaces/system-message';
+import { Login } from '../../../../core/services/auth/login';
 
 @Injectable()
 export class LoginService implements Login{

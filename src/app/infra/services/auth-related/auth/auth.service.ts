@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { Auth } from '../../../core/services/auth/auth';
+import { Auth } from '../../../../core/services/auth/auth';
 
 @Injectable({
   providedIn: 'root'
