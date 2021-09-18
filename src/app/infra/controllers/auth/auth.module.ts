@@ -13,7 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from "@angular/material/card";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -33,7 +33,8 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     MatInputModule,
     MatCardModule,
     MatCheckboxModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatIconModule
   ]
 })
 export class AuthModule { }

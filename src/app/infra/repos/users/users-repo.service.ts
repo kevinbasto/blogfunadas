@@ -12,12 +12,9 @@ export class UsersRepoService implements UsersRepo{
     private angularFireStore : AngularFirestore
   ) { }
 
-  async createUser( user : User ) : Promise<string>{
-    let id : string;
-    await this.angularFireStore.collection('users').add(user)
-    .then( (res : DocumentReference) => { id = res.id })
+  async createUser( uid : string, user : User ) : Promise<any>{
+    await this.angularFireStore.collection('users').doc(uid).set(user)
     .catch(error => { throw new DatabaseException(error); });
-    return id;
   }
   
   async getUser( userId : string ) : Promise<User>{

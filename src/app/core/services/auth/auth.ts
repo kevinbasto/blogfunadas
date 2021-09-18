@@ -1,3 +1,3 @@
 export interface Auth {
-    setAuthUser(user : any) : void;
+    isAuth() : Promise<boolean>;
 }

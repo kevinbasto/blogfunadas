@@ -17,12 +17,7 @@ export class AuthService implements Auth{
     private angularFirestore : AngularFirestore
   ) { }
 
-  setAuthUser(user : any) : void {
-    this.user$ = this.afAuth.authState.pipe(switchMap(user => {
-      if (user)
-        return this.angularFirestore.doc<any>(`users/${user.uid}`).valueChanges();
-      else 
-        return of(null);
-    }))
+  async isAuth() : Promise<boolean>{
+    return true;
   }
 }

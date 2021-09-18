@@ -1,66 +1,83 @@
 <mat-card>
-    <div class="card-header">
-        <h1>¡Registrate para poder acceder!</h1>
+    <div *ngIf="!message">
+        <div class="card-header">
+            <h1>¡Registrate para poder acceder!</h1>
+        </div>
+        <form [formGroup]="registerForm" (submit)="register()">
+            <div class="card-body form-container">
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>
+                        Apodo
+                    </mat-label>
+                    <input matInput type="text" formControlName="nickname">
+                </mat-form-field>
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>
+                        Correo electrónico
+                    </mat-label>
+                    <input matInput formControlName="email">
+                    <mat-error *ngIf="email.hasError('required')">
+                        ¡Introduce tu correo electrónico!
+                    </mat-error>
+                    <mat-error *ngIf="email.hasError('email')">
+                        ¡Introduce un correo electrónico válido!
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>
+                        Contraseña
+                    </mat-label>
+                    <input matInput formControlName="password" [type]="hide ? 'password' : 'text' ">
+                    <mat-icon matSuffix (click)="hide = !hide"> {{ hide ? 'visibility_off' : 'visibility' }} </mat-icon>
+                    <mat-error *ngIf="password.hasError('required')">
+                        ¡Introduce tu contraseña!
+                    </mat-error>
+                    <mat-error *ngIf="password.hasError('minlength')">
+                        ¡La contraseña debe tener al menos 8 caractéres!
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>
+                        Confirmar contraseña
+                    </mat-label>
+                    <input matInput formControlName="confirmPassword" [errorStateMatcher]="matcher" [type]="hide ? 'password' : 'text' ">
+                    <mat-error *ngIf="confirmPassword.hasError('minlength')">
+                        ¡La contraseña no tiene al menos 8 caractéres!
+                    </mat-error>
+                    <mat-error *ngIf="confirmPassword.hasError('required')">
+                        ¡Confirma tu contraseña!
+                    </mat-error>
+                    <mat-error *ngIf="password.value != confirmPassword.value">
+                        ¡Las contraseñas no coinciden!
+                    </mat-error>
+                </mat-form-field>
+                <div class="link-container">
+                        <p>
+                            <mat-checkbox formControlName="terms"></mat-checkbox>
+                            Acepto los 
+                            <a class="link" [routerLink]="['/auth/terms']">
+                                términos y condiciones
+                            </a>
+                        </p>
+                        <p>
+                            ¿Ya tienes una cuenta? 
+                            <a [routerLink]="['/auth/login']" class="link">
+                                Inicia sesión para acceder
+                            </a>
+                        </p>
+                </div>   
+            </div>
+            <div class="card-footer">
+                <button mat-button color="primary" type="submit" [disabled]="!registerForm.valid || registerData.password != registerData.confirmPassword">Registrarme</button>
+            </div>
+        </form>
     </div>
-    <form [formGroup]="registerForm" (submit)="register()">
-        <div class="card-body form-container">
-            <mat-form-field appearance="fill" style="width: 100%;">
-                <mat-label>
-                    Correo electrónico
-                </mat-label>
-                <input matInput formControlName="email">
-                <mat-error *ngIf="email.hasError('required')">
-                    ¡Introduce tu correo electrónico!
-                </mat-error>
-                <mat-error *ngIf="email.hasError('email')">
-                    ¡Introduce un correo electrónico válido!
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="fill" style="width: 100%;">
-                <mat-label>
-                    Contraseña
-                </mat-label>
-                <input matInput type="password" formControlName="password">
-                <mat-error *ngIf="password.hasError('required')">
-                    ¡Introduce tu contraseña!
-                </mat-error>
-                <mat-error *ngIf="password.hasError('minlength')">
-                    ¡La contraseña debe tener al menos 8 caractéres!
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="fill" style="width: 100%;">
-                <mat-label>
-                    Confirmar contraseña
-                </mat-label>
-                <input matInput type="password" formControlName="confirmPassword" >
-                <mat-error *ngIf="confirmPassword.hasError('minlength')">
-                    ¡La contraseña no tiene al menos 8 caractéres!
-                </mat-error>
-                <mat-error *ngIf="confirmPassword.hasError('required')">
-                    ¡Confirma tu contraseña!
-                </mat-error>
-                <mat-error *ngIf="password.value != confirmPassword.value">
-                    ¡Las contraseñas no coinciden!
-                </mat-error>
-            </mat-form-field>
-            <div class="link-container">
-                    <p>
-                        <mat-checkbox formControlName="terms"></mat-checkbox>
-                        Acepto los 
-                        <a class="link" [routerLink]="['/auth/terms']">
-                            términos y condiciones
-                        </a>
-                    </p>
-                    <p>
-                        ¿Ya tienes una cuenta? 
-                        <a [routerLink]="['/auth/login']" class="link">
-                            Inicia sesión para acceder
-                        </a>
-                    </p>
-            </div>   
-        </div>
-        <div class="card-footer">
-            <button mat-button color="primary" type="submit" [disabled]="!registerForm.valid || registerData.password != registerData.confirmPassword">Registrarme</button>
-        </div>
-    </form>
+    <div *ngIf="message">
+        <h1 class="{{messageClass}}">
+            {{message.name}}
+        </h1>
+        <p class="{{messageClass}}">
+            {{message.message}}
+        </p>
+    </div>
 </mat-card>
