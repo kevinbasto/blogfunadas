@@ -6,6 +6,7 @@ import { AdminComponent } from './infra/controllers/admin/admin.component';
 import { AdminModule } from "./infra/controllers/admin/admin.module";
 import { AuthComponent } from './infra/controllers/auth/auth.component';
 import { AuthModule } from "./infra/controllers/auth/auth.module";
+import { AuthGuard } from './infra/guards/auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
     children: [{
         path: '',
         loadChildren: () => import('./infra/controllers/auth/auth.module').then(m => m.AuthModule)
-      }]
+      }
+    ],
   },
   {
     path : 'client',
@@ -27,7 +29,9 @@ const routes: Routes = [
     children: [{
         path : '',
         loadChildren: () => import('./infra/controllers/client/client.module').then(m => m.ClientModule)
-      }],
+      }
+    ],
+    canActivateChild: [AuthGuard]
   },
   {
     path : 'admin',
@@ -35,7 +39,9 @@ const routes: Routes = [
     children: [{
         path: '',
         loadChildren: () => import('./infra/controllers/admin/admin.module').then(m => m.AdminModule)
-      }]
+      }
+    ],
+    canActivateChild: [AuthGuard]
   },
   {
     path: '**',

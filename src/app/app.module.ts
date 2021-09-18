@@ -12,6 +12,7 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { GuardsModule } from './infra/guards/guards.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     AppRoutingModule,
     BrowserAnimationsModule,
     ComponentsModule,
+    GuardsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule
