@@ -4,17 +4,31 @@
             Recuperar mi cuenta 
         </h1>
     </div>
-    <form [formGroup]="recoverForm">
-        <div class="card-body form-container">
+    <form [formGroup]="recoverForm" (submit)="submit()">
+        <div class="card-body form-container" >
             <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>
                     Correo electrónico
                 </mat-label>
                 <input matInput type="password" type="text" formControlName="email">
+                <mat-error *ngIf="email.hasError('required')">
+                    ¡Introduce tu correo electrónico!
+                </mat-error>
+                <mat-error *ngIf="email.hasError('email')">
+                    ¡Introduce un correo electrónico válido!
+                </mat-error>
             </mat-form-field>
+            <div>
+                <p>
+                    ¿Recordaste tu contraseña?
+                    <a [routerLink]="['/auth/login']" class="link">
+                        Iniciar sesión
+                    </a>
+                </p>
+            </div>
         </div>
         <div class="card-footer">
-            <button type="submit" mat-button color="primary">Recuperar mi contraseña</button>
+            <button type="submit" mat-button color="primary" [disabled]="recoverForm.invalid">Recuperar mi contraseña</button>
         </div>
     </form>
 </mat-card>

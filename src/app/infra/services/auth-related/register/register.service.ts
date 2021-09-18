@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { DatabaseException } from '../../../core/exceptions/database.exception';
-import { RegisterDto } from '../../../core/interfaces/auth/register.interface';
-import { SystemMessage } from '../../../core/interfaces/system-message';
-import { User } from '../../../core/interfaces/user.interface';
-import { UsersRepo } from '../../../core/repos/users.repo';
-import { Register } from '../../../core/services/auth/register';
-import { USERS_REPO } from '../../repos/tokens';
+import { DatabaseException } from '../../../../core/exceptions/database.exception';
+import { RegisterDto } from '../../../../core/interfaces/auth/register.interface';
+import { SystemMessage } from '../../../../core/interfaces/system-message';
+import { User } from '../../../../core/interfaces/user.interface';
+import { UsersRepo } from '../../../../core/repos/users.repo';
+import { Register } from '../../../../core/services/auth/register';
+import { USERS_REPO } from '../../../repos/tokens';
 
 @Injectable()
 export class RegisterService implements Register{

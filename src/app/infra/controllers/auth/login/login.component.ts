@@ -4,7 +4,7 @@ import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginDto } from '../../../../core/interfaces/auth/login.interface';
 import { SystemMessage } from '../../../../core/interfaces/system-message';
-import { LoginService } from '../../../services/login/login.service';
+import { Login } from '../../../../core/services/auth/login';
 import { LoginServiceToken } from '../../../services/services.token';
 
 
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder : FormBuilder,
-    @Inject(LoginServiceToken) private loginService : LoginService,
+    @Inject(LoginServiceToken) private loginService : Login,
     private router : Router
   ) {
     this.loginForm = this.formBuilder.group({
