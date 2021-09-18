@@ -14,11 +14,18 @@ export class RecoverComponent implements OnInit {
     private formBuilder : FormBuilder
   ) {
     this.recoverForm = this.formBuilder.group({
-      email : ["", [Validators.required]]
+      email : ["", [Validators.required, Validators.email]]
     })
   }
 
   ngOnInit(): void {
   }
 
+  submit(){
+    console.log(this.email.value);
+  }
+
+  get email(){
+    return this.recoverForm.get('email');
+  }
 }
