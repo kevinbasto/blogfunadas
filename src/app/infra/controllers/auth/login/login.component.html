@@ -1,0 +1,58 @@
+<mat-card>
+    <div class="card-header">
+        <h1>Funadas no fansub</h1>
+    </div>
+    <form [formGroup]="loginForm" (submit)="login()">
+        <div class="card-body">
+            <mat-form-field style="width: 100%;">
+                <mat-label>
+                    Correo electrónico
+                </mat-label>
+                <input type="text" matInput formControlName="email">
+                <mat-error *ngIf="email.hasError('email')">
+                    ¡Introduce un correo electrónico válido!
+                </mat-error>
+                <mat-error *ngIf="email.hasError('required')">
+                    ¡Introduce tu correo electrónico!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="width: 100%;">
+                <mat-label>
+                    Contraseña
+                </mat-label>
+                <input type="password" matInput formControlName="password">
+                <mat-error *ngIf="password.hasError('password')">
+                    ¡Introduce tu contraseña!
+                </mat-error>
+                <mat-error *ngIf="password.hasError('minlength')">
+                    ¡La contraseña no tiene al menos 8 caractéres!
+                </mat-error>
+            </mat-form-field>
+            <div style="width: 100%; padding-top: 1rem;">
+                <p>
+                    ¿No tienes cuenta?
+                    <a class="link" [routerLink]="['/auth/register']">
+                        Crear cuenta
+                    </a>
+                </p>
+                <p>
+                    ¿Olvidaste tu contraseña?
+                    <a class="link" [routerLink]="['/auth/recover']">
+                        Recuperar cuenta
+                    </a>
+                </p>
+            </div>
+            <div style="padding-bottom: .5rem;" *ngIf="message">
+                <p class="{{message.name}}">{{message.message}}</p>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid || uploading">
+                <span *ngIf="!uploading">
+                    Iniciar sesión
+                </span>
+                <mat-spinner diameter="35" *ngIf="uploading"></mat-spinner>
+            </button>
+        </div>
+    </form>
+</mat-card>
