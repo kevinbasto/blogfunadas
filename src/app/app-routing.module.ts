@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ClientComponent } from './infra/controllers/client/client.component';
-import { ClientModule } from "./infra/controllers/client/client.module";
-import { AdminComponent } from './infra/controllers/admin/admin.component';
-import { AdminModule } from "./infra/controllers/admin/admin.module";
-import { AuthComponent } from './infra/controllers/auth/auth.component';
-import { AuthModule } from "./infra/controllers/auth/auth.module";
+import { ClientComponent } from './client/client.component';
+import { ClientModule } from "./client/client.module";
+import { AdminComponent } from './admin/admin.component';
+import { AdminModule } from "./admin/admin.module";
+import { AuthComponent } from './auth/auth.component';
+import { AuthModule } from "./auth/auth.module";
 
 const routes: Routes = [
   {
@@ -18,7 +18,7 @@ const routes: Routes = [
     component: AuthComponent,
     children: [{
         path: '',
-        loadChildren: () => import('./infra/controllers/auth/auth.module').then(m => m.AuthModule)
+        loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
       }]
   },
   {
@@ -26,7 +26,7 @@ const routes: Routes = [
     component: ClientComponent,
     children: [{
         path : '',
-        loadChildren: () => import('./infra/controllers/client/client.module').then(m => m.ClientModule)
+        loadChildren: () => import('./client/client.module').then(m => m.ClientModule)
       }],
   },
   {
@@ -34,7 +34,7 @@ const routes: Routes = [
     component: AdminComponent,
     children: [{
         path: '',
-        loadChildren: () => import('./infra/controllers/admin/admin.module').then(m => m.AdminModule)
+        loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
       }]
   },
   {
