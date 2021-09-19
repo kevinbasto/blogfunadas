@@ -6,7 +6,8 @@ import { NovelComponent } from './novel/novel.component';
 import { ChapterComponent } from './chapter/chapter.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReposModule } from '../../repos/repos.module';
-
+import { ComponentsModule } from '../../components/components.module';
+import { MatSidenavModule } from "@angular/material/sidenav";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ReposModule } from '../../repos/repos.module';
   imports: [
     CommonModule,
     ClientRoutingModule,
-    ReposModule
+    ReposModule,
+    ComponentsModule
   ]
 })
 export class ClientModule { }
