@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AuthGuard } from './auth/auth.guard';
 import { ServicesModule } from '../services/services.module';
 import { RouterModule } from '@angular/router';
+import { NonAuthGuard } from './non-auth/non-auth.guard';
 
 
 
@@ -14,7 +15,8 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   providers : [
-    AuthGuard
+    AuthGuard,
+    NonAuthGuard
   ]
 })
 export class GuardsModule { }
