@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,7 +11,10 @@ export class SidebarComponent implements OnInit {
 
   @Output() toggle = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(
+    private router : Router,
+    private afauth : AngularFireAuth
+  ) { }
 
   ngOnInit(): void {
   }
@@ -18,4 +23,12 @@ export class SidebarComponent implements OnInit {
     this.toggle.emit(false);
   }
 
+  navigateToMenu(){
+    this.router.navigate(['/auth/latest']);
+  }
+
+
+  logOut(){
+    this.afauth.signOut();
+  }
 }

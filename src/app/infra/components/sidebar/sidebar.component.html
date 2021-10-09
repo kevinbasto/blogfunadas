@@ -1,4 +1,24 @@
-<h1>test</h1>
-<button (click)="close()">
-    push me to close
-</button>
+<div>
+    <div style="background-color: cornflowerblue; display: flex; height: 3rem; align-items: center; padding-left: .5rem; padding-right: .5rem;">
+        <h1 style="padding: 0; margin: 0; font-weight: bold; text-transform: uppercase; cursor: pointer;" (click)="navigateToMenu()">Funadas</h1>
+    </div>
+    <div>
+        <ul>
+            <li style="padding: 1rem;">
+                <h2>
+                    wasureta
+                </h2>
+            </li>
+
+            <li>
+                <button (click)="logOut()">
+                    cerrar sesión
+                </button>
+            </li>
+        </ul>
+
+    </div>    
+    <div class="menu_option" (click)="close()" >
+        <mat-icon class="exit_button" style="cursor: pointer; font-size: 1.5rem; font-weight: bold;">arrow_back</mat-icon>
+    </div>
+</div>

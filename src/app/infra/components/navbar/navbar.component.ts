@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-navbar',
@@ -17,4 +18,6 @@ export class NavbarComponent implements OnInit {
   open(){
     this.toggle.emit(true);
   }
+
+  
 }
