@@ -17,14 +17,11 @@ export class SidebarService implements Sidebar{
   getMenuItems(menu : string) : Promise<Array<MenuItem>>{
     return new Promise<Array<MenuItem>>(async (resolve, reject) => {
       let menuItems = this.getMenuFromLocalHost(menu);
-      if(!menuItems){
+      if(!menuItems)
         this.retrieveFromFirebase(menu)
         .then(items => resolve(items))
         .catch(err => reject(err));
-      }
-        
-        
-        
+      
     })
   }
 
