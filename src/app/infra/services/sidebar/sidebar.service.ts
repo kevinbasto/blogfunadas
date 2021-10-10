@@ -21,7 +21,8 @@ export class SidebarService implements Sidebar{
         this.retrieveFromFirebase(menu)
         .then(items => resolve(items))
         .catch(err => reject(err));
-      
+      else
+        resolve(menuItems);
     })
   }
 
