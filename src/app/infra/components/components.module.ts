@@ -4,6 +4,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatIconModule } from "@angular/material/icon";
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,10 @@ import { MatSidenavModule } from "@angular/material/sidenav";
   ],
   imports: [
     CommonModule,
-    MatSidenavModule
+    RouterModule,
+
+    MatSidenavModule,
+    MatIconModule
   ],
   exports : [
     NavbarComponent,

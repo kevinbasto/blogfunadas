@@ -1,4 +1,12 @@
-<h1>test</h1>
-<button (click)="close()">
-    push me to close
-</button>
+<div style="display: grid; width: 100%; place-items: center; padding-top: 1em;">
+    <mat-icon class="back_arrow" (click)="close()">arrow_back</mat-icon>
+</div>
+<div>
+    <ul>
+        <li *ngFor="let item of menuItems">
+            <a style="text-decoration: none; color: black;" [routerLink]="[item.link]" (click)="close()">
+                {{item.name}}
+            </a>
+        </li>
+    </ul>
+</div>
