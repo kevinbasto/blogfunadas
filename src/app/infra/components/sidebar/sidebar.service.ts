@@ -32,7 +32,7 @@ export class SidebarService {
     return new Promise<Array<MenuItem>>((resolve, reject) => {
       this.sidebar.getMenuItems(menu)
       .then(menuItems => {
-        menuItems.map(item => item.link = `/client/${item.link}`);
+        menuItems.map(item => item.link = `/${menu}/${item.link}`);
         resolve(menuItems)
       })
     })
