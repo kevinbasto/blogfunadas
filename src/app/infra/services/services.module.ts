@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthServicetoken, LoginServiceToken, RecoverServiceToken, RegisterServiceToken } from './services.token';
+import { AuthServicetoken, LoginServiceToken, RecoverServiceToken, RegisterServiceToken, SidebarServiceToken } from './services.token';
 import { LoginService } from './auth-related/login/login.service';
 import { AuthService } from './auth-related/auth/auth.service';
 import { RegisterService } from './auth-related/register/register.service';
 import { ReposModule } from '../repos/repos.module';
 import { RecoverService } from './auth-related/recover/recover.service';
+import { SidebarService } from './sidebar/sidebar.service';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,7 +15,8 @@ import { RecoverService } from './auth-related/recover/recover.service';
   declarations: [],
   imports: [
     CommonModule,
-    ReposModule
+    ReposModule,
+    RouterModule
   ],
   providers: [
     {
@@ -31,6 +34,10 @@ import { RecoverService } from './auth-related/recover/recover.service';
     {
       provide: RecoverServiceToken,
       useClass: RecoverService
+    },
+    {
+      provide: SidebarServiceToken,
+      useClass: SidebarService
     }
   ]
 })
