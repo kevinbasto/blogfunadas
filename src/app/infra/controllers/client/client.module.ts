@@ -7,7 +7,6 @@ import { ChapterComponent } from './chapter/chapter.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReposModule } from '../../repos/repos.module';
 import { ComponentsModule } from '../../components/components.module';
-import { MatSidenavModule } from "@angular/material/sidenav";
 
 
 @NgModule({
