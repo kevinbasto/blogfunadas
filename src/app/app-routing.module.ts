@@ -8,6 +8,7 @@ import { AuthComponent } from './infra/controllers/auth/auth.component';
 import { AuthModule } from "./infra/controllers/auth/auth.module";
 import { AuthGuard } from './infra/guards/auth/auth.guard';
 import { NonAuthGuard } from './infra/guards/non-auth/non-auth.guard';
+import { RolesGuard } from './infra/guards/roles/roles.guard';
 
 const routes: Routes = [
   {
@@ -43,7 +44,7 @@ const routes: Routes = [
         loadChildren: () => import('./infra/controllers/admin/admin.module').then(m => m.AdminModule)
       }
     ],
-    canActivateChild: [AuthGuard]
+    canActivateChild: [AuthGuard, RolesGuard]
   },
   {
     path: '**',
