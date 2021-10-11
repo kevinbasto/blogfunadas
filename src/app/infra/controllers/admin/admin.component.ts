@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
+  toggle : boolean;
+  opened : boolean;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  toggleSidebar(value : boolean){
+    this.toggle = value;
+  }
+
+  close(){
+    this.toggle = false;
+  }
 }

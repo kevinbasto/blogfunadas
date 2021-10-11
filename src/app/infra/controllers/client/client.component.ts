@@ -19,8 +19,6 @@ export class ClientComponent implements OnInit {
     this.toggle = value;
   }
 
-  
-
   close(){
     this.toggle = false;
   }
