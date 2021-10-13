@@ -8,14 +8,36 @@ import { GenreFormComponent } from './genre-form/genre-form.component';
 import { NovelFormComponent } from './novel-form/novel-form.component';
 import { ChapterFormComponent } from './chapter-form/chapter-form.component';
 import { CommentFormComponent } from './comment-form/comment-form.component';
-
-
+import { MatCardModule } from "@angular/material/card";
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from "@angular/material/input";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
-  declarations: [DashboardComponent, TableComponent, UserFormComponent, GenreFormComponent, NovelFormComponent, ChapterFormComponent, CommentFormComponent],
+  declarations: [
+    DashboardComponent,
+    TableComponent,
+    UserFormComponent,
+    GenreFormComponent,
+    NovelFormComponent,
+    ChapterFormComponent,
+    CommentFormComponent,
+  ],
   imports: [
-    CommonModule,
-    AdminRoutingModule
-  ]
+    CommonModule, 
+    AdminRoutingModule,
+
+    // material imports
+    MatCardModule,
+    MatTableModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatPaginatorModule,
+    MatSortModule
+  ],
 })
-export class AdminModule { }
+export class AdminModule {}

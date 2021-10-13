@@ -14,13 +14,18 @@ import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { GuardsModule } from './infra/guards/guards.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientComponent,
     AdminComponent,
-    AuthComponent
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +37,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     AngularFirestoreModule,
     AngularFireAuthModule,
 
-    MatSidenavModule
+    MatSidenavModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
