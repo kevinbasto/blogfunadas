@@ -28,7 +28,7 @@ export class RegisterService implements Register{
 
   async createProfileInDatabase(register : RegisterDto, uid : string){
     let user : User = {
-      nickname : register.nickname,
+      username : register.username,
       email : register.email,
       role: "reader"
     }
