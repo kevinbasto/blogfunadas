@@ -8,6 +8,8 @@ import { NovelFormComponent } from './novel-form/novel-form.component';
 import { ChapterFormComponent } from './chapter-form/chapter-form.component';
 import { CommentFormComponent } from './comment-form/comment-form.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import { TermsFormComponent } from './terms-form/terms-form.component';
+import { PrivacyFormComponent } from './privacy-form/privacy-form.component';
 
 const routes : Routes = [
   {
@@ -42,6 +44,14 @@ const routes : Routes = [
   {
     path: ':table/reports/:comment',
     component: CommentFormComponent
+  },
+  {
+    path : ':table/terms/:terms',
+    component: TermsFormComponent
+  },
+  {
+    path : ':table/privacy/:privacy',
+    component: PrivacyFormComponent
   },
   {
     path : '**',

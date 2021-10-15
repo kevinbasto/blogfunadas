@@ -15,6 +15,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from '@angular/material/sort';
+import { TermsFormComponent } from './terms-form/terms-form.component';
+import { PrivacyFormComponent } from './privacy-form/privacy-form.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { MatSortModule } from '@angular/material/sort';
     NovelFormComponent,
     ChapterFormComponent,
     CommentFormComponent,
+    TermsFormComponent,
+    PrivacyFormComponent,
   ],
   imports: [
     CommonModule, 
