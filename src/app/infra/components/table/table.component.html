@@ -1,11 +1,9 @@
-<div class="dialog-container">
-  <mat-card class="mat-elevation-z8">
-    <h1 style="text-align: center; text-transform: capitalize;">{{tableName}}</h1>
-    <div style="width: 100%; display: flex; padding: .5rem; justify-content: flex-end;">
+
+    <!--<div style="width: 100%; display: flex; padding: .5rem; justify-content: flex-end;">
       <button mat-raised-button color="primary">Añadir {{tableName.substr(0, tableName.length - 1)}}</button>
     </div>
     <table mat-table [dataSource]="dataSource" >
-      <!-- dynamic column definition -->
+      
       <ng-container *ngFor="let column of displayedColumns" matColumnDef="{{column}}">
         <th mat-header-cell *matHeaderCellDef>{{column}}</th>
         <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
@@ -16,8 +14,5 @@
     </table>
 
     <mat-paginator [length]="length" [pageSizeOptions]="[5, 10, 20]" aria-label="Select page of periodic elements">
-    </mat-paginator>
-    <app-generic-table></app-generic-table>  
-  </mat-card>
-  
-</div>
+    </mat-paginator>-->
+    

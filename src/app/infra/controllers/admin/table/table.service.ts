@@ -25,7 +25,6 @@ export class TableService {
       let table = this.getMenuName(route.url);
       this.tableName.next(table)
 
-      
       this.firestore.collection(table, fn => fn.limit(5)).valueChanges().pipe(take(1)).toPromise()
       .then(res => this.table.next(res));
 

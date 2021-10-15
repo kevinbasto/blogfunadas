@@ -17,6 +17,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from '@angular/material/sort';
 import { TermsFormComponent } from './terms-form/terms-form.component';
 import { PrivacyFormComponent } from './privacy-form/privacy-form.component';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { PrivacyFormComponent } from './privacy-form/privacy-form.component';
   imports: [
     CommonModule, 
     AdminRoutingModule,
+    ComponentsModule,
 
     // material imports
     MatCardModule,

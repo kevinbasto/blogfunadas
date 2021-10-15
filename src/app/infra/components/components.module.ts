@@ -6,22 +6,30 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatIconModule } from "@angular/material/icon";
 import { RouterModule } from '@angular/router';
+import { TableComponent } from './table/table.component';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
 
     MatSidenavModule,
-    MatIconModule
+    MatIconModule,
+    MatIconModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports : [
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    TableComponent
   ]
 })
 export class ComponentsModule { }
