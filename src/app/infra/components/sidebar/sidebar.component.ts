@@ -1,8 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { MenuItem } from '../../../core/interfaces/menu-item';
-import { SidebarService } from './sidebar.service';
+import { Sidebar } from '../../../core/services/sidebar';
+import { SidebarServiceToken } from '../../services/services.token';
 
 @Component({
   selector: 'app-sidebar',
@@ -16,28 +15,24 @@ export class SidebarComponent implements OnInit {
   @Output() toggle = new EventEmitter<boolean>();
 
   constructor(
-    private router : Router,
-    private afauth : AngularFireAuth,
-    private sidebarService : SidebarService
-  ) { }
-
-  ngOnInit(): void {
-    this.sidebarService.menuItems
-    .subscribe(menuItems => {
-      this.menuItems = menuItems
-    })
+    @Inject(SidebarServiceToken) private sidebar : Sidebar
+  ) { 
+    this.sidebar.menuItems.subscribe( (menuItems : Array<MenuItem>) => {
+      this.menuItems = menuItems;
+    });
   }
+
+  ngOnInit(): void { }
 
   close(){
     this.toggle.emit(false);
   }
 
   navigateToMenu(){
-    this.router.navigate(['/client/latest']);
+    this.sidebar.navigateToMenu();
   }
 
-
-  logOut(){
-    this.afauth.signOut();
+  signOut(){
+    this.sidebar.signOut();
   }
 }

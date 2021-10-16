@@ -1,15 +1,18 @@
 <div style="display: grid; width: 100%; place-items: center; padding-top: 1em;">
-    <mat-icon class="back_arrow" (click)="close()">arrow_back</mat-icon>
+    <div style="display: flex; align-items: center;"  (click)="close()">
+        <mat-icon class="back_arrow">arrow_back</mat-icon>
+        <p style="margin: 0; font-size: 1.2rem; color: #1976d2; font-weight: bold; cursor: pointer;">Regresar</p>
+    </div>
 </div>
 <div>
     <ul>
         <li *ngFor="let item of menuItems">
-            <a style="text-decoration: none; color: black;" [routerLink]="[item.link]" (click)="close()">
+            <a class="link" [routerLink]="[item.url]" (click)="close()">
                 {{item.name}}
             </a>
         </li>
         <li>
-            <p style="text-decoration: none; color: black;"  (click)="logOut()">
+            <p class="link" (click)="signOut()">
                 Cerrar sesión
             </p>
         </li>

@@ -1,10 +1,10 @@
 .back_arrow{
   transition: .5s;
   font-weight: bold;
+  color: #1976d2;
 }
 
-.back_arrow:hover{
-  transform: scale(1.1);
+.back_arrow{
   cursor: pointer;
 }
 
@@ -23,6 +23,5 @@ li{
 }
 
 li:hover{
-  font-size: 1.4rem;
   cursor: pointer;
 }
