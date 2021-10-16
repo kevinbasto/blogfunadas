@@ -10,6 +10,7 @@ import { TableComponent } from './table/table.component';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ServicesModule } from '../services/services.module';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ServicesModule } from '../services/services.module';
     MatSidenavModule,
     MatIconModule,
     MatIconModule,
+    MatTableModule,
     MatPaginatorModule,
     MatSortModule
   ],

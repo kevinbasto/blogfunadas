@@ -8,6 +8,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class TableComponent implements OnInit {
 
+  @Input() private dataSource : string;
   @ViewChild(MatPaginator) paginator : MatPaginator;
   public columns : Array<string>
   public data : Array<any>;
