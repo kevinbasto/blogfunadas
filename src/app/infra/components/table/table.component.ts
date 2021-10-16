@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { TableService } from './table.service';
 
 @Component({
   selector: 'app-generic-table',
@@ -14,9 +13,7 @@ export class TableComponent implements OnInit {
   public data : Array<any>;
   public length : number;
 
-  constructor(
-    private tableService : TableService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

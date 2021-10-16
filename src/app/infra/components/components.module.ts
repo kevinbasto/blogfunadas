@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { TableComponent } from './table/table.component';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ServicesModule } from '../services/services.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
   imports: [
     CommonModule,
     RouterModule,
+    ServicesModule,
 
     MatSidenavModule,
     MatIconModule,
