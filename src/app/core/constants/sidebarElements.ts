@@ -11,7 +11,7 @@ export const adminSidebarElements  : Array<MenuItem> = [
         url : "genres"
     },
     {
-        name : "users",
+        name : "usuarios",
         url : "users"
     },
     {
