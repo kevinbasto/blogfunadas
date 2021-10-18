@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersHeaders } from '../../../../core/constants/headers';
+import { TableHeader } from '../../../../core/interfaces/table-header';
 
 @Component({
   selector: 'app-users',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersComponent implements OnInit {
 
-  constructor() { }
+  dataSource : string;
+  public columns : Array<TableHeader> = UsersHeaders;
+
+  constructor() {
+    this.dataSource = "users"
+  }
 
   ngOnInit(): void {
   }
