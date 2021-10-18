@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  dataSource : string = "/updates"
+  dataSource : string;
 
-  constructor() { }
+  constructor() {
+    this.dataSource = "/updates";
+  }
 
   ngOnInit(): void {
   }
