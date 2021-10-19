@@ -39,7 +39,7 @@ export class NovelsRepoService implements NovelsRepo {
   private getId(genre : string) : Promise<number>{
     return new Promise<number>((resolve, reject) => {
       this.angularFirestore.collection<Novel>(genre, fn => fn.orderBy('id', 'desc').limit(1)).valueChanges().pipe(take(1)).toPromise()
-      .then((result) => resolve(result[0].id +1))
+      .then((result) => resolve(result[0]? result[0].id + 1 : 1))
       .catch(err => reject(err));
     })
   }

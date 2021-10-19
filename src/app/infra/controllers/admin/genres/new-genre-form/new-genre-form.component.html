@@ -1,0 +1,24 @@
+<div class="card_container">
+    <mat-card>
+        <form [formGroup]="genreForm" (submit)="submit()">
+            <mat-form-field style="width: 100%;">
+                <mat-label>
+                    Nombre del nuevo género
+                </mat-label>
+                <input matInput type="text" formControlName="name">
+                <mat-error>
+                    ¡Introduce el nombre del género!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="width: 100%;">
+                <mat-label>
+                    Fecha de creación
+                </mat-label>
+                <input matInput type="text" formControlName="creationDate">
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="genreForm.invalid">
+                Crear género
+            </button>
+        </form>
+    </mat-card>
+</div>
