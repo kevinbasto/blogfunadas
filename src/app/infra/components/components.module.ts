@@ -9,6 +9,9 @@ import { RouterModule } from '@angular/router';
 import { TableComponent } from './table/table.component';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ServicesModule } from '../services/services.module';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -19,12 +22,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
   imports: [
     CommonModule,
     RouterModule,
+    ServicesModule,
 
     MatSidenavModule,
     MatIconModule,
     MatIconModule,
+    MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatButtonModule
   ],
   exports : [
     NavbarComponent,

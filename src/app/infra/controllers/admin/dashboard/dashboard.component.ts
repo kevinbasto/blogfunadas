@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { DashboardHeaders } from '../../../../core/constants/headers';
+import { TableHeader } from '../../../../core/interfaces/table-header';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  dataSource : string;
+  public columns : Array<TableHeader> = DashboardHeaders;
+
+  constructor() {
+    this.dataSource = "updates";
+  }
 
   ngOnInit(): void {
   }

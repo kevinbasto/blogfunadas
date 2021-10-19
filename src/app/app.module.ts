@@ -15,6 +15,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { GuardsModule } from './infra/guards/guards.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
+import { ReposModule } from './infra/repos/repos.module';
 
 
 
@@ -39,6 +40,7 @@ import { MatIconModule } from '@angular/material/icon';
 
     MatSidenavModule,
     MatIconModule,
+    ReposModule
   ],
   providers: [],
   bootstrap: [AppComponent]

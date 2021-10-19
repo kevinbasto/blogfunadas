@@ -1,15 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { TableComponent } from './table/table.component';
-import { GenreFormComponent } from './genre-form/genre-form.component';
-import { NovelFormComponent } from './novel-form/novel-form.component';
-import { ChapterFormComponent } from './chapter-form/chapter-form.component';
-import { CommentFormComponent } from './comment-form/comment-form.component';
-import { UserFormComponent } from './user-form/user-form.component';
-import { TermsFormComponent } from './terms-form/terms-form.component';
-import { PrivacyFormComponent } from './privacy-form/privacy-form.component';
 
 const routes : Routes = [
   {
@@ -19,51 +10,35 @@ const routes : Routes = [
   },
   {
     path: 'dashboard',
-    component : DashboardComponent
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
-    path: ':table',
-    component: TableComponent
+    path: 'genres',
+    loadChildren: () => import('./genres/genres.module').then(m => m.GenresModule)
   },
   {
-    path : ':table/user/:user',
-    component: UserFormComponent
+    path: 'policies',
+    loadChildren: () => import('./policies/policies.module').then(m => m.PoliciesModule)
   },
   {
-    path: ':table/genre/:genre',
-    component: GenreFormComponent
+    path: 'terms',
+    loadChildren: () => import('./terms/terms.module').then(m => m.TermsModule )
   },
   {
-    path: ':table/novel/:novel',
-    component: NovelFormComponent
+    path: 'users',
+    loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
   },
   {
-    path: ':table/novel/:novel/:chapter',
-    component: ChapterFormComponent
+    path: ':genre',
+    loadChildren : () => import('./catalogues/catalogues.module').then(m => m.CataloguesModule)
   },
-  {
-    path: ':table/reports/:comment',
-    component: CommentFormComponent
-  },
-  {
-    path : ':table/terms/:terms',
-    component: TermsFormComponent
-  },
-  {
-    path : ':table/privacy/:privacy',
-    component: PrivacyFormComponent
-  },
-  {
-    path : '**',
-    redirectTo: 'dashboard'
-  }
 ]
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ]
 })
 export class AdminRoutingModule { }
