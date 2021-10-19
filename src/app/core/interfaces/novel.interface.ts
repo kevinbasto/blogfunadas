@@ -3,6 +3,6 @@ export interface Novel{
     chapters : number;
     status : string;
     author : string;
-    genreId : string;
+    genre : string;
     translators : Array<string>;
 }

@@ -60,7 +60,6 @@ export class TableComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   test(row : any){
-    console.log(row.url);
-    //this.table.navigateToUrl(row.url);
+    this.table.navigateToUrl(row.url);
   }
 }
