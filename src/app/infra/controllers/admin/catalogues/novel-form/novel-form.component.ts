@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Novel } from '../../../../../core/interfaces/novel.interface';
 import { Staff } from '../../../../../core/interfaces/staff';
 import { NovelCreationService } from './novel-creation.service';
 
@@ -13,20 +12,7 @@ import { NovelCreationService } from './novel-creation.service';
 export class NovelFormComponent implements OnInit {
 
   public novelForm : FormGroup;
-  public staff : Array<Staff> = [
-    {
-      username : "Komi Shouko",
-      uid: 'komikomi'
-    },
-    {
-      username : "Tadano",
-      uid: 'tadanotadano'
-    },
-    {
-      username: "Najimi",
-      uid: "najiminajimi"
-    }
-  ];
+  public staff : Array<Staff>;
 
   constructor(
     private formBuilder : FormBuilder,
@@ -44,20 +30,26 @@ export class NovelFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.setUnchangeableData();
+    this.novelCreation.getStaff()
+    .then(staff => this.staff = staff)
+  }
+
+  setUnchangeableData(){
     let genre = this.router.url.split("/").filter(element => {
       if(element != "")
         return element
     })[1];
-
     // setting unchangable data
     this.chapters.setValue(0);
     this.chapters.disable();
     this.genre.setValue(genre);
     this.genre.disable();
     this.addTranslator();
-    this.translators.at(0).get('translator').setValue("komikomi")
-    this.translators.at(0).disable();
-    
+    this.novelCreation.getUid().then(uid => {
+      this.translators.at(0).get('translator').setValue(uid)
+      this.translators.at(0).disable();
+    })
   }
 
   submit(){

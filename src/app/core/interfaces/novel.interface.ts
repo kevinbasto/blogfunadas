@@ -1,4 +1,5 @@
 export interface Novel{
+    id? : number;
     name : string;
     chapters : number;
     status : string;
