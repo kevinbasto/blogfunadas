@@ -59,7 +59,8 @@ export class TableComponent implements OnInit, AfterViewInit, OnChanges {
     .catch(err => {})
   }
 
-  resetCounter(){
-    
+  test(row : any){
+    console.log(row.url);
+    //this.table.navigateToUrl(row.url);
   }
 }

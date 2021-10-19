@@ -32,5 +32,9 @@ export class TableService implements Table{
       })
       .catch(err => { console.log(err); });
     });
-  }  
+  }
+  
+  navigateToUrl(url : string) : void{
+    this.router.navigate([url]);
+  }
 }
