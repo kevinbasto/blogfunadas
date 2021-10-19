@@ -14,10 +14,10 @@ export class TableService implements Table{
 
   getTableData(table : string) : Promise<number>{
     return new Promise<number>((resolve, reject) => {
-      this.firestore.doc('/info/tables').get().pipe(take(1)).toPromise()
-      .then( data => {
-        let values : any = data.data();
-        resolve(values[table].size);
+      this.firestore.doc(`/${table}/meta`).valueChanges()
+      .pipe(take(1)).toPromise()
+      .then( (data : any) => {
+        resolve(data.size);
       })
     });
   }
