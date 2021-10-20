@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AbstractControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { Novel } from '../../../../../core/interfaces/novel.interface';
@@ -40,7 +41,6 @@ export class NovelCreationService {
       .then((users) => {
         let staff : Array<Staff> = [];
         users.map(user => {
-          
           staff.push({
             username: user.username,
             uid : user.url
@@ -49,7 +49,7 @@ export class NovelCreationService {
         resolve(staff);
       })
       .catch((err) => {
-        console.log(err);
+        reject(err);
       });
     })
   }
@@ -62,4 +62,5 @@ export class NovelCreationService {
     })
     })
   }
+
 }

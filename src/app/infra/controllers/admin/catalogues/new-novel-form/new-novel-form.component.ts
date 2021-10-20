@@ -38,15 +38,28 @@ export class NewNovelFormComponent implements OnInit {
   }
 
   setUnchangeableData(){
+    // setting unchangable data
+    this.setChaptersData();
+    this.setGenreData();
+    this.setTranslatorData();
+  }
+
+  private setChaptersData(){
+    this.chapters.setValue(0);
+    this.chapters.disable();
+    
+  }
+
+  private setGenreData(){
     let genre = this.router.url.split("/").filter(element => {
       if(element != "")
         return element
     })[1];
-    // setting unchangable data
-    this.chapters.setValue(0);
-    this.chapters.disable();
     this.genre.setValue(genre);
     this.genre.disable();
+  }
+
+  private setTranslatorData(){
     this.addTranslator();
     this.novelCreation.getUid().then(uid => {
       this.translators.at(0).get('translator').setValue(uid)
