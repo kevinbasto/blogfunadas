@@ -2,17 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Staff } from '../../../../../core/interfaces/staff';
-import { NovelCreationService } from './novel-creation.service';
+import { NovelCreationService } from './new-novel-creation.service';
 
 @Component({
   selector: 'app-novel-form',
-  templateUrl: './novel-form.component.html',
-  styleUrls: ['./novel-form.component.css']
+  templateUrl: './new-novel-form.component.html',
+  styleUrls: ['./new-novel-form.component.css']
 })
-export class NovelFormComponent implements OnInit {
+export class NewNovelFormComponent implements OnInit {
 
   public novelForm : FormGroup;
   public staff : Array<Staff>;
+  public uploading : boolean;
 
   constructor(
     private formBuilder : FormBuilder,
@@ -27,6 +28,7 @@ export class NovelFormComponent implements OnInit {
       genre : [""],
       translators : this.formBuilder.array([])
     })
+    this.uploading = false;
   }
 
   ngOnInit(): void {
@@ -53,11 +55,16 @@ export class NovelFormComponent implements OnInit {
   }
 
   submit(){
+    this.uploading = !this.uploading;
     let form : any = this.novelForm.getRawValue();
     form.translators = form.translators.map((translator : any) => {
       return translator.translator
     })
-    this.novelCreation.createNovel(this.genre.value, form);
+    this.novelCreation.createNovel(this.genre.value, form)
+    .then(res => {
+      console.log(res);
+      this.uploading = !this.uploading;
+    })
   }
 
   get name(){
@@ -93,5 +100,9 @@ export class NovelFormComponent implements OnInit {
 
   deleteTranslator(i : any){
     this.translators.removeAt(i)
+  }
+
+  goBack(){
+    this.router.navigate([`/admin/${this.genre.value}`])
   }
 }

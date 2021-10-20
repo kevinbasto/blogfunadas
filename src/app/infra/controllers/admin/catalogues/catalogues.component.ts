@@ -34,4 +34,8 @@ export class CataloguesComponent implements OnInit {
         return element;
     })[1];
   }
+
+  createNovel(){
+    this.router.navigate([`/admin/${this.dataSource}/new`]);
+  }
 }

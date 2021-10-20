@@ -74,9 +74,17 @@
                     Agregar traductor
                 </button>
             </div>
-            <button type="submit" mat-raised-button color="primary" style="margin-top: 1rem;" [disabled]="novelForm.invalid">
-                Crear Novela
-            </button>
+            <div style="display: flex; justify-content: space-between; width: 100%;">
+                <button type="button" mat-raised-button style="margin-top: 1rem;" (click)="goBack()">
+                    Regresar
+                </button>
+                <button type="submit" mat-raised-button color="primary" style="margin-top: 1rem;" [disabled]="novelForm.invalid || uploading">
+                    <span *ngIf="!uploading">
+                        Crear Novela
+                    </span>
+                    <mat-spinner diameter="35" *ngIf="uploading"></mat-spinner>
+                </button>
+            </div>
         </form>
     </mat-card>
 </div>
