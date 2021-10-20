@@ -1,9 +1,11 @@
 import { Inject, Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { Novel } from '../../../../../core/interfaces/novel.interface';
 import { Staff } from '../../../../../core/interfaces/staff';
+import { SystemMessage } from '../../../../../core/interfaces/system-message';
 import { User } from '../../../../../core/interfaces/user.interface';
 import { NovelsRepo } from '../../../../../core/repos/novels.repo';
 import { NOVELS_REPO } from '../../../../repos/tokens';
@@ -15,12 +17,16 @@ export class NovelCreationService {
   constructor(
     @Inject(NOVELS_REPO) private novelsRepo: NovelsRepo,
     private firestore: AngularFirestore,
-    private afauth : AngularFireAuth
+    private afauth : AngularFireAuth,
+    private router : Router
   ) {}
 
-  createNovel(genre: string, novel: Novel) {
-    this.novelsRepo.createNovel(genre, novel).then((res) => {
-      console.log(res);
+  createNovel(genre: string, novel: Novel) : Promise<SystemMessage>{
+    return new Promise<SystemMessage>((resolve, reject) => {
+      this.novelsRepo.createNovel(genre, novel).then((res) => {
+        resolve(res);
+        this.router.navigate([`/admin/${genre}`]);
+      });
     });
   }
 
