@@ -30,15 +30,12 @@ export class TranslaterGuard implements CanActivate {
       let novelIdPosition : number = 3;
       let genre : string = state.url.split("/")[genrePostion];
       let novelId : string = state.url.split("/")[novelIdPosition];
-      console.log(state.url.split("/"));
       await this.firestore.doc<Novel>(`/${genre}/${novelId}`).valueChanges().pipe(take(1)).toPromise()
       .then(novel => {
         let allowed : boolean = false;
-        console.log(novel);
         for(let translator of novel.translators)
           if(translator == uid)
             allowed = true;
-        console.log(allowed);
         if(allowed)
           resolve(true);
         else

@@ -95,6 +95,7 @@ export class NovelsRepoService implements NovelsRepo {
       .catch((error) => {
         throw new DatabaseException(error);
       });
+      return true;
   }
 
   async getNovels(

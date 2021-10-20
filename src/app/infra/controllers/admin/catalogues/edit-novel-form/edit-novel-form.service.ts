@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
+import { Novel } from '../../../../../core/interfaces/novel.interface';
 import { Staff } from '../../../../../core/interfaces/staff';
 import { User } from '../../../../../core/interfaces/user.interface';
 import { NovelsRepo } from '../../../../../core/repos/novels.repo';
@@ -50,6 +51,22 @@ export class EditNovelFormService {
     .then(user => {
       resolve(user.uid);
     })
+    })
+  }
+
+  getNovelData(genre  : string, novel : string) : Promise<Novel>{
+    return new Promise<Novel>((resolve, reject) => {
+      this.firestore.doc<Novel>(`/${genre}/${novel}`).valueChanges().pipe(take(1)).toPromise()
+      .then(novel => resolve(novel))
+      .catch(error => reject(error));
+    });
+  }
+
+  editNovel(genre : string, novelId : string, novel : Novel){
+    return new Promise<any>((resolve, reject) => {
+      this.novelsRepo.updateNovel(genre, novelId, novel)
+      .then(res => resolve(res))
+      .catch(error => reject(error));
     })
   }
 }

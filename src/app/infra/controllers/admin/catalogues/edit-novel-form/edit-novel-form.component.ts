@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Novel } from '../../../../../core/interfaces/novel.interface';
 import { Staff } from '../../../../../core/interfaces/staff';
 import { EditNovelFormService } from './edit-novel-form.service';
 
@@ -17,7 +18,7 @@ export class EditNovelFormComponent implements OnInit {
 
   constructor(
     private formBuilder : FormBuilder,
-    public novelCreation : EditNovelFormService,
+    public editNovelService : EditNovelFormService,
     private router : Router
   ) {
     this.novelForm = this.formBuilder.group({
@@ -32,42 +33,49 @@ export class EditNovelFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setUnchangeableData();
-    this.novelCreation.getStaff()
+    this.getData();
+    this.editNovelService.getStaff()
     .then(staff => this.staff = staff)
-  }
-
-  submit(){
-
-  }
-  
-  setUnchangeableData(){
-    // setting unchangable data
-    this.setChaptersData();
-    this.setGenreData();
-    this.setTranslatorData();
-  }
-
-  private setChaptersData(){
-    this.chapters.setValue(0);
-    this.chapters.disable();
     
   }
 
-  private setGenreData(){
-    let genre = this.router.url.split("/").filter(element => {
-      if(element != "")
-        return element
-    })[1];
-    this.genre.setValue(genre);
-    this.genre.disable();
+  submit(){
+    this.uploading = !this.uploading;
+    let splitRoute = this.router.url.split("/");
+    let novel = splitRoute[splitRoute.length - 1];
+    let genre = splitRoute[splitRoute.length - 2];
+    let novelData : any = this.novelForm.getRawValue();
+    novelData.translators = novelData.translators.map((translator : any) => {
+      return translator.translator
+    })
+    this.editNovelService.editNovel(genre, novel, novelData)
+    .then(() => {
+      this.router.navigate([`/admin/${genre}`])
+      this.uploading = !this.uploading
+    });
   }
 
-  private setTranslatorData(){
-    this.addTranslator();
-    this.novelCreation.getUid().then(uid => {
-      this.translators.at(0).get('translator').setValue(uid)
+  private getData(){
+    let splitRoute = this.router.url.split("/");
+    let novel = splitRoute[splitRoute.length - 1];
+    let genre = splitRoute[splitRoute.length - 2];
+    this.editNovelService.getNovelData(genre, novel)
+    .then(data => {
+      this.name.setValue(data.name);
+      this.chapters.setValue(data.chapters);
+      this.status.setValue(data.status);
+      this.author.setValue(data.author);
+      this.genre.setValue(data.genre);
+      data.translators.forEach((translator, index) => {
+        this.addTranslator();
+        this.translators.at(index).get("translator").setValue(translator);
+      })
+      this.chapters.disable();
+      this.genre.disable();
       this.translators.at(0).disable();
+    })
+    .catch(error => {
+      console.log(error);
     })
   }
 
