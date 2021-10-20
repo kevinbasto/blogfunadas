@@ -27,6 +27,7 @@ export class RegisterService implements Register{
   }
 
   async createProfileInDatabase(register : RegisterDto, uid : string){
+    console.log("a");
     let user : User = {
       username : register.username,
       email : register.email,

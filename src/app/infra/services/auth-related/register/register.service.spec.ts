@@ -12,5 +12,6 @@ describe('RegisterService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+    console.log("a");
   });
 });
