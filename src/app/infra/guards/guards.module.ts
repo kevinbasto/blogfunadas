@@ -5,6 +5,7 @@ import { ServicesModule } from '../services/services.module';
 import { RouterModule } from '@angular/router';
 import { NonAuthGuard } from './non-auth/non-auth.guard';
 import { RolesGuard } from './roles/roles.guard';
+import { AdminGuard } from './roles/admin/admin.guard';
 
 
 
@@ -18,7 +19,8 @@ import { RolesGuard } from './roles/roles.guard';
   providers : [
     AuthGuard,
     NonAuthGuard,
-    RolesGuard
+    RolesGuard,
+    AdminGuard
   ]
 })
 export class GuardsModule { }
