@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { EditNovelFormComponent } from './edit-novel-form/edit-novel-form.component';
 
 const routes : Routes = [
   {
@@ -19,13 +20,18 @@ const routes : Routes = [
   {
     path : 'new',
     component: NewNovelFormComponent
+  },
+  {
+    path : ':novel',
+    component: EditNovelFormComponent
   }
 ]
 
 @NgModule({
   declarations: [
     CataloguesComponent,
-    NewNovelFormComponent
+    NewNovelFormComponent,
+    EditNovelFormComponent
   ],
   imports: [
     CommonModule,
