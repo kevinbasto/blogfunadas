@@ -46,6 +46,10 @@ export class NovelsRepoService implements NovelsRepo {
 
   private async addNovel(genre : string, novel : Novel){
     await this.angularFirestore.collection(genre).add(novel)
+    .then(docRef => {
+      console.log(docRef.id);
+      this.angularFirestore.collection(genre).doc(docRef.id).update({ url : docRef.id});
+    })
     .catch(err => { throw err });
   }
 

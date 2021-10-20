@@ -11,6 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { EditNovelFormComponent } from './edit-novel-form/edit-novel-form.component';
+import { GuardsModule } from '../../../guards/guards.module';
+import { TranslaterGuard } from '../../../guards/translater/translater.guard';
 
 const routes : Routes = [
   {
@@ -23,7 +25,8 @@ const routes : Routes = [
   },
   {
     path : ':novel',
-    component: EditNovelFormComponent
+    component: EditNovelFormComponent,
+    canActivate: [TranslaterGuard]
   }
 ]
 
@@ -42,7 +45,8 @@ const routes : Routes = [
     MatInputModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    GuardsModule
   ]
 })
 export class CataloguesModule { }
