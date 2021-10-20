@@ -11,6 +11,7 @@ import { GenresService } from '../genres.service';
 export class NewGenreFormComponent implements OnInit {
 
   public genreForm : FormGroup
+  public uploading : boolean;
 
   constructor(
     private formBuilder : FormBuilder,
@@ -19,7 +20,8 @@ export class NewGenreFormComponent implements OnInit {
     this.genreForm = this.formBuilder.group({
       name : ["", [Validators.required]],
       creationDate :[""]
-    })
+    });
+    this.uploading = false;
   }
 
   ngOnInit(): void {
@@ -28,9 +30,12 @@ export class NewGenreFormComponent implements OnInit {
   }
 
   submit(){
+    this.uploading = !this.uploading;
     let genre : Genre = this.genreForm.getRawValue();
     this.genresService.createGenre(genre)
-    .then(res => {})
+    .then(res => {
+      this.uploading = !this.uploading;
+    })
     .catch(err => {});
   }
 
