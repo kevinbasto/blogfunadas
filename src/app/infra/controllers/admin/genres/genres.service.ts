@@ -1,8 +1,11 @@
 import { Inject, Injectable } from '@angular/core';
+import { inject } from '@angular/core/testing';
 import { Genre } from '../../../../core/interfaces/genre.interface';
 import { SystemMessage } from '../../../../core/interfaces/system-message';
 import { GenresRepo } from '../../../../core/repos/genres.repo';
+import { Sidebar } from '../../../../core/services/sidebar';
 import { GENRES_REPO } from '../../../repos/tokens';
+import { SidebarServiceToken } from '../../../services/services.token';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +13,8 @@ import { GENRES_REPO } from '../../../repos/tokens';
 export class GenresService {
 
   constructor(
-    @Inject(GENRES_REPO) private genresRepo : GenresRepo
+    @Inject(GENRES_REPO) private genresRepo : GenresRepo,
+    @Inject(SidebarServiceToken) sidebar : Sidebar
   ) { }
 
   createGenre(genre : Genre) : Promise<SystemMessage>{

@@ -27,7 +27,7 @@ export class GenresRepoService implements GenresRepo {
     // genres id
     await this.angularFirestore.collection<Genre>('genres', fn => fn.orderBy('id', 'desc').limit(1))
     .valueChanges().pipe(take(1)).toPromise()
-    .then(data => { genre.id = data[0]? data[0].id : 1 });
+    .then(data => { genre.id = data[0]? data[0].id + 1 : 1 });
 
     // genre creation
     await this.angularFirestore.collection<Genre>('genres').add(genre);
@@ -46,8 +46,11 @@ export class GenresRepoService implements GenresRepo {
         url : genre.name
       });
     })
-
     this.angularFirestore.doc('/info/genres').update({ genres : genres });
+
+    // update genres meta file
+    this.angularFirestore.doc('/genres/meta').update({ size : genre.id});
+
     return {
       name : "Género creado",
       message : "el género fue creado con éxito"

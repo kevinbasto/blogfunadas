@@ -5,4 +5,5 @@ export interface Sidebar {
     menuItems : Subject<Array<MenuItem>>;
     navigateToMenu() : void;
     signOut() : void;
+    deleteSidebarElements() : void;
 }
