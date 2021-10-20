@@ -37,6 +37,5 @@ export class AuthService implements Auth {
         });
       })
     });
-    console.log("a");
   }
 }

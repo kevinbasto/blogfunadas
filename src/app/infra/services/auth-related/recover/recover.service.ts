@@ -22,7 +22,6 @@ export class RecoverService implements Recover{
         reject(this.errorMessage);
       });
     })
-    console.log("a");
   }
 
   private get successMessage() : SystemMessage {

@@ -17,7 +17,6 @@ export class LoginService implements Login{
         .then(res => resolve(this.getEmailLoginSuccessMessage()))
         .catch(error => reject(this.getEmailLoginErrorMessage()))
       })
-      console.log("a");
     }
 
     getEmailLoginSuccessMessage() : SystemMessage {
