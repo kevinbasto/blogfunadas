@@ -30,7 +30,10 @@ export class GenresRepoService implements GenresRepo {
     .then(data => { genre.id = data[0]? data[0].id + 1 : 1 });
 
     // genre creation
-    await this.angularFirestore.collection<Genre>('genres').add(genre);
+    let url : string;
+    await this.angularFirestore.collection<Genre>('genres').add(genre)
+    .then(res => url = res.id);
+    await this.angularFirestore.collection<Genre>('genres').doc(url).update({ url : url});
 
     // meta config
     await this.angularFirestore.collection(genre.name).doc(`meta`).set({ size : 0 });
