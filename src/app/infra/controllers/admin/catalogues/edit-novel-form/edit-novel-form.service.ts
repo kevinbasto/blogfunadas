@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { Novel } from '../../../../../core/interfaces/novel.interface';
 import { Staff } from '../../../../../core/interfaces/staff';
+import { SystemMessage } from '../../../../../core/interfaces/system-message';
 import { User } from '../../../../../core/interfaces/user.interface';
 import { NovelsRepo } from '../../../../../core/repos/novels.repo';
 import { NOVELS_REPO } from '../../../../repos/tokens';
@@ -19,7 +20,6 @@ export class EditNovelFormService {
     private afauth : AngularFireAuth,
     private router : Router
   ) {}
-
 
 
   getStaff() : Promise<Array<Staff>>{
