@@ -17,7 +17,7 @@ export class TableService implements Table{
       this.firestore.doc(`/${table}/meta`).valueChanges()
       .pipe(take(1)).toPromise()
       .then( (data : any) => {
-        resolve(data.size);
+        resolve(data? data.size : 0);
       })
     });
   }
