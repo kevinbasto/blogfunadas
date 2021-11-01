@@ -75,7 +75,6 @@ export class NewNovelFormComponent implements OnInit {
     })
     this.novelCreation.createNovel(this.genre.value, form)
     .then(res => {
-      console.log(res);
       this.uploading = !this.uploading;
     })
   }

@@ -14,7 +14,6 @@ export class RecoverService implements Recover{
     return new Promise<SystemMessage>((resolve, reject) => {
       this.afAuth.sendPasswordResetEmail(email)
       .then(res => {
-        console.log(res);
         resolve(this.successMessage);
       })
       .catch(err => {

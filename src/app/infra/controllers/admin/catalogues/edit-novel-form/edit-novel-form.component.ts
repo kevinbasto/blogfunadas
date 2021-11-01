@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ChaptersHeaders } from '../../../../../core/constants/headers';
 import { Novel } from '../../../../../core/interfaces/novel.interface';
 import { Staff } from '../../../../../core/interfaces/staff';
+import { TableHeader } from '../../../../../core/interfaces/table-header';
 import { EditNovelFormService } from './edit-novel-form.service';
 
 @Component({
@@ -15,6 +17,8 @@ export class EditNovelFormComponent implements OnInit {
   public novelForm : FormGroup;
   public staff : Array<Staff>;
   public uploading : boolean;
+  public dataSource : string;
+  public chaptersColumns : Array<TableHeader>;
 
   constructor(
     private formBuilder : FormBuilder,
@@ -30,6 +34,11 @@ export class EditNovelFormComponent implements OnInit {
       translators : this.formBuilder.array([])
     })
     this.uploading = false;
+    this.chaptersColumns = ChaptersHeaders;
+    let splitRoute = this.router.url.split("/");
+    let novel = splitRoute[splitRoute.length - 1];
+    let genre = splitRoute[splitRoute.length - 2];
+    this.dataSource = `${genre}/${novel}/chapters`;
   }
 
   ngOnInit(): void {
@@ -79,6 +88,12 @@ export class EditNovelFormComponent implements OnInit {
     })
   }
 
+  createChapter(){
+    let splitRoute = this.router.url.split("/");
+    let novel = splitRoute[splitRoute.length - 1];
+    let genre = splitRoute[splitRoute.length - 2];
+    this.router.navigate([`/admin/${genre}/${novel}/new`])
+  }
   
   get name(){
     return this.novelForm.get('name')

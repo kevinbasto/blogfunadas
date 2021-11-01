@@ -81,7 +81,6 @@ export class GenresRepoService implements GenresRepo {
           genre.name = genreUpdate.name;
       });
       await this.angularFirestore.doc<GenresContainer>(`/info/genres`).update(genres)
-      .then(res => { console.log(res); console.log("done");})
       .catch(err => reject(err));
       resolve({
         name : "genre updated",

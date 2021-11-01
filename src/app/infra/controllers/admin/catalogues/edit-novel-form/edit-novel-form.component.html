@@ -1,6 +1,6 @@
 <div style="width:  100%; display: grid; place-items:  center; padding-top: 1rem;">
     <mat-card class="mat-elevation-z8">
-        <h1>Novel</h1>
+        <h1>Editar novela</h1>
         <form [formGroup]="novelForm" (submit)="submit()" >
             <mat-form-field style="width: 100%;">
                 <mat-label>
@@ -74,6 +74,14 @@
                     Agregar traductor
                 </button>
             </div>
+            <div style="padding-top: 1em;">
+                <div style="width: 100%; display: flex; justify-content: flex-end;">
+                    <button mat-raised-button color = "primary" type="button" (click)="createChapter()">
+                        Añadir entrada
+                    </button>
+                </div>
+                <app-generic-table [dataSource]="dataSource" [inputHeaders]="chaptersColumns"></app-generic-table>
+            </div>
             <div style="display: flex; justify-content: space-between; width: 100%;">
                 <button type="button" mat-raised-button style="margin-top: 1rem;" (click)="goBack()">
                     Regresar
@@ -86,5 +94,6 @@
                 </button>
             </div>
         </form>
+        
     </mat-card>
 </div>
