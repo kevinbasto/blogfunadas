@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@angular/core';
 import { inject } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { Genre } from '../../../../core/interfaces/genre.interface';
-import { SystemMessage } from '../../../../core/interfaces/system-message';
-import { GenresRepo } from '../../../../core/repos/genres.repo';
-import { Sidebar } from '../../../../core/services/sidebar';
-import { GENRES_REPO } from '../../../repos/tokens';
-import { SidebarServiceToken } from '../../../services/services.token';
+import { Genre } from '../../../../../core/interfaces/genre.interface';
+import { SystemMessage } from '../../../../../core/interfaces/system-message';
+import { GenresRepo } from '../../../../../core/repos/genres.repo';
+import { Sidebar } from '../../../../../core/services/sidebar';
+import { GENRES_REPO } from '../../../../repos/tokens';
+import { SidebarServiceToken } from '../../../../services/services.token';
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Genre } from '../../../../../core/interfaces/genre.interface';
-import { GenresService } from '../genres.service';
+import { GenresService } from './create-genres.service';
 
 @Component({
   selector: 'app-new-genre-form',

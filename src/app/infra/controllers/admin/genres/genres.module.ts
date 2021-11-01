@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { NewGenreFormComponent } from './new-genre-form/new-genre-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { EditGenreFormComponent } from './edit-genre-form/edit-genre-form.component';
 
 const routes : Routes = [
   {
@@ -18,13 +19,18 @@ const routes : Routes = [
   {
     path : 'new',
     component: NewGenreFormComponent
+  },
+  {
+    path : ':genre',
+    component: EditGenreFormComponent
   }
 ]
 
 @NgModule({
   declarations: [
     GenresComponent,
-    NewGenreFormComponent
+    NewGenreFormComponent,
+    EditGenreFormComponent
   ],
   imports: [
     CommonModule,
