@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-chapter-form',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditChapterFormComponent implements OnInit {
 
-  constructor() { }
+  public chapterForm : FormGroup;
+  public uploading : boolean;
+
+  constructor(
+    private fb : FormBuilder,
+  ) {
+    this.setFormData();
+  }
 
   ngOnInit(): void {
   }
 
+  setFormData(){
+    this.uploading = false;
+    this.chapterForm = this.fb.group({
+      title : ["", [ Validators.required ]],
+      content : ["", [ Validators.required ]]
+    })
+  }
+
+  submit(){}
+
+  goBack(){}
 }
