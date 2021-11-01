@@ -89,6 +89,12 @@ export class EditNovelFormComponent implements OnInit {
     })
   }
 
+  createChapter(){
+    let splitRoute = this.router.url.split("/");
+    let novel = splitRoute[splitRoute.length - 1];
+    let genre = splitRoute[splitRoute.length - 2];
+    this.router.navigate([`/admin/${genre}/${novel}/new`])
+  }
   
   get name(){
     return this.novelForm.get('name')

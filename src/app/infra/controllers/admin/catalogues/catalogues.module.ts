@@ -13,6 +13,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { EditNovelFormComponent } from './edit-novel-form/edit-novel-form.component';
 import { GuardsModule } from '../../../guards/guards.module';
 import { TranslaterGuard } from '../../../guards/translater/translater.guard';
+import { NewChapterFormComponent } from './new-chapter-form/new-chapter-form.component';
+import { EditChapterFormComponent } from './edit-chapter-form/edit-chapter-form.component';
 
 const routes : Routes = [
   {
@@ -27,6 +29,16 @@ const routes : Routes = [
     path : ':novel',
     component: EditNovelFormComponent,
     canActivate: [TranslaterGuard]
+  },
+  {
+    path: ':novel/new',
+    component: NewChapterFormComponent,
+    canActivate: [TranslaterGuard]
+  },
+  {
+    path: ':novel/:chapter',
+    component: EditChapterFormComponent,
+    canActivate: [TranslaterGuard]
   }
 ]
 
@@ -34,7 +46,9 @@ const routes : Routes = [
   declarations: [
     CataloguesComponent,
     NewNovelFormComponent,
-    EditNovelFormComponent
+    EditNovelFormComponent,
+    NewChapterFormComponent,
+    EditChapterFormComponent
   ],
   imports: [
     CommonModule,

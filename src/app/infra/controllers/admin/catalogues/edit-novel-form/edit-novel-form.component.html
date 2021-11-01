@@ -1,6 +1,6 @@
 <div style="width:  100%; display: grid; place-items:  center; padding-top: 1rem;">
     <mat-card class="mat-elevation-z8">
-        <h1>Novel</h1>
+        <h1>Editar novela</h1>
         <form [formGroup]="novelForm" (submit)="submit()" >
             <mat-form-field style="width: 100%;">
                 <mat-label>
@@ -76,7 +76,7 @@
             </div>
             <div style="padding-top: 1em;">
                 <div style="width: 100%; display: flex; justify-content: flex-end;">
-                    <button mat-raised-button color = "primary" type="button">
+                    <button mat-raised-button color = "primary" type="button" (click)="createChapter()">
                         Añadir entrada
                     </button>
                 </div>
