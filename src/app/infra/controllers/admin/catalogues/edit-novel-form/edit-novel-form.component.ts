@@ -39,7 +39,6 @@ export class EditNovelFormComponent implements OnInit {
     let novel = splitRoute[splitRoute.length - 1];
     let genre = splitRoute[splitRoute.length - 2];
     this.dataSource = `${genre}/${novel}/chapters`;
-    console.log(this.dataSource);
   }
 
   ngOnInit(): void {

@@ -27,11 +27,10 @@ export class TableService implements Table{
       this.firestore.collection(table, ref =>  ref.orderBy('id', 'asc').where('id', '>=', page * pageSize).limit(pageSize))
       .valueChanges().pipe(take(1)).toPromise()
       .then(page => {
-        console.log(page);
         page.map((element : any) => element.url = `${this.router.url}/${element.url}`);
         resolve(page)
       })
-      .catch(err => { console.log(err); });
+      .catch(err => {});
     });
   }
   
