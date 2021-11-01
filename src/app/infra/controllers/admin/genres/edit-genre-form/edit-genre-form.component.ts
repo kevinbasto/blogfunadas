@@ -13,6 +13,7 @@ export class EditGenreFormComponent implements OnInit {
 
   public genreForm : FormGroup
   public uploading : boolean;
+  private currentName : string;
 
   constructor(
     private formBuilder : FormBuilder,
@@ -35,6 +36,7 @@ export class EditGenreFormComponent implements OnInit {
   private getData(){
     this.editGenre.getData()
     .then(res => {
+      this.currentName = res.name;
       this.name.setValue(res.name);
     })
     .catch(err => {
@@ -45,6 +47,10 @@ export class EditGenreFormComponent implements OnInit {
   submit(){
     this.uploading = !this.uploading;
     let genre : Genre = this.genreForm.getRawValue();
+    let genreId = this.router.url.split("/")[this.router.url.split("/").length - 1];
+    this.editGenre.updateGenre(this.currentName, genreId, genre)
+    .then(res => { this.uploading = !this.uploading })
+    .catch(err => { console.log(err); });
   }
 
   get name(){

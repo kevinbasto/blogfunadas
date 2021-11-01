@@ -3,6 +3,7 @@ import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import { take } from 'rxjs/operators';
 import { DatabaseException } from '../../../core/exceptions/database.exception';
 import { Genre } from '../../../core/interfaces/genre.interface';
+import { GenresContainer } from '../../../core/interfaces/genres-container.interface';
 import { MenuItem } from '../../../core/interfaces/menu-item';
 import { SystemMessage } from '../../../core/interfaces/system-message';
 import { GenresRepo } from '../../../core/repos/genres.repo';
@@ -69,10 +70,24 @@ export class GenresRepoService implements GenresRepo {
     return genre;
   }
 
-  async editGenre(genreId : string, genre : Genre) : Promise<boolean> {
-    await this.angularFirestore.collection('genres').doc(genreId).update(genre)
-    .catch(error => { throw new DatabaseException(error); });
-    return true;
+  editGenre(currentName : string, genreId : string, genreUpdate : Genre) : Promise<SystemMessage> {
+    return new Promise<SystemMessage>(async(resolve, reject) => {
+      // update the info inside the genre document
+      await this.angularFirestore.doc(`/genres/${genreId}`).update(genreUpdate)
+      // update the genres meta file
+      let genres : GenresContainer = await this.angularFirestore.doc<GenresContainer>('/info/genres').valueChanges().pipe(take(1)).toPromise()
+      genres.genres.map(genre => {
+        if(genre.name == currentName)
+          genre.name = genreUpdate.name;
+      });
+      await this.angularFirestore.doc<GenresContainer>(`/info/genres`).update(genres)
+      .then(res => { console.log(res); console.log("done");})
+      .catch(err => reject(err));
+      resolve({
+        name : "genre updated",
+        message : "then genre has been updated"
+      });
+    });
   }
 
   async deleteGenre(genreId : string) : Promise<boolean> {
