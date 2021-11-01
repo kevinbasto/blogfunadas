@@ -6,5 +6,6 @@ export interface Novel{
     author : string;
     genre : string;
     translators : Array<string>;
+    cover? : string;
     url? : string;
 }
