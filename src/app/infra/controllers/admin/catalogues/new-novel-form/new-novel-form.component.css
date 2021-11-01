@@ -12,3 +12,27 @@
 .dropzone.hovering{
     border: 1px solid #949494;
 }
+
+.dropzone:hover{
+    border: 1px solid #949494;
+}
+
+.dropzone:focus{
+    border: 1px solid #949494;
+}
+
+
+.img-container{
+    display: flex;
+}
+
+@media(min-width:980px){
+    .form-container{
+        display: flex;
+    }
+    
+    .img-container{
+        max-width: 50%;
+    }
+}
+

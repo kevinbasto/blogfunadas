@@ -141,4 +141,5 @@ export class NewNovelFormComponent implements OnInit {
     fr.readAsDataURL(this.file);
     fr.onload = () => { this.preview = fr.result };
   }
+
 }
