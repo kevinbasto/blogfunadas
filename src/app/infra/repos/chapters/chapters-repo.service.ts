@@ -32,6 +32,9 @@ export class ChaptersRepoService implements ChaptersRepo{
       else
         await this.firestore.doc(`/${genre}/${novel}/chapters/meta`).set({size : chapter.id});
       
+      //update the chapters number in the novel
+      await this.firestore.doc(`/${genre}/${novel}`).update({chapters : chapter.id});
+
       resolve({
         name: "chapter created",
         message: "the chapter has been successfully created"
