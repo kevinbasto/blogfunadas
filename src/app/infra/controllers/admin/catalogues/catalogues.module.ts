@@ -15,6 +15,7 @@ import { GuardsModule } from '../../../guards/guards.module';
 import { TranslaterGuard } from '../../../guards/translater/translater.guard';
 import { NewChapterFormComponent } from './new-chapter-form/new-chapter-form.component';
 import { EditChapterFormComponent } from './edit-chapter-form/edit-chapter-form.component';
+import { DirectivesModule } from '../../../directives/directives.module';
 
 const routes : Routes = [
   {
@@ -60,7 +61,8 @@ const routes : Routes = [
     ReactiveFormsModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    GuardsModule
+    GuardsModule,
+    DirectivesModule
   ]
 })
 export class CataloguesModule { }

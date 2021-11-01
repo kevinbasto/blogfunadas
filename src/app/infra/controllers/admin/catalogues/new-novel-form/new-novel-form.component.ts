@@ -15,6 +15,10 @@ export class NewNovelFormComponent implements OnInit {
   public staff : Array<Staff>;
   public uploading : boolean;
 
+  public isHovering: boolean;
+  public file : File;
+  public preview : any;
+
   constructor(
     private formBuilder : FormBuilder,
     private novelCreation : NovelCreationService,
@@ -116,5 +120,25 @@ export class NewNovelFormComponent implements OnInit {
 
   goBack(){
     this.router.navigate([`/admin/${this.genre.value}`])
+  }
+
+  toggleHover(event: boolean) {
+    this.isHovering = event;
+  }
+  
+  onDrop(files: FileList) {
+      this.file = files.item(0);
+      this.processImageToVisualize();
+  }
+
+  uploadFromButton($event : Event){
+    this.file = ($event.target as HTMLInputElement)?.files[0];
+    this.processImageToVisualize();
+  }
+
+  private processImageToVisualize(){
+    let fr = new FileReader();
+    fr.readAsDataURL(this.file);
+    fr.onload = () => { this.preview = fr.result };
   }
 }

@@ -1,7 +1,10 @@
 <div style="width:  100%; display: grid; place-items:  center; padding-top: 1rem;">
-    <mat-card class="mat-elevation-z8">
+    <mat-card class="mat-elevation-z8" style="margin-bottom: 1em;">
         <h1>Novel</h1>
         <form [formGroup]="novelForm" (submit)="submit()" >
+            <div *ngIf="preview">
+                <img src="{{preview? preview : ''}}">
+            </div>
             <mat-form-field style="width: 100%;">
                 <mat-label>
                     Nombre de la novela
@@ -74,6 +77,17 @@
                     Agregar traductor
                 </button>
             </div>
+            <!-- form part to handle files -->
+            <div style="width: 100%; margin-top: 1em;">
+                <div class="dropzone" dropzone (hovered)="toggleHover($event)" (dropped)="onDrop($event)" [class.hovering]="isHovering">
+                    <h3>Arrastra aquí la portada o</h3>
+                    <input type="file" placeholder="o da click aquí" (change)="uploadFromButton($event)" id="coverFileLoader" style="display:none;">
+                    <label for="coverFileLoader" style="cursor: pointer;">Haz click aquí para subir la imagen</label>
+                    <span>{{ file? file.name + " seleccionado" : "No hay imagen seleccionada"}}</span>
+                    
+                </div>
+            </div>
+            <!-- form buttons to handle any submissions-->
             <div style="display: flex; justify-content: space-between; width: 100%;">
                 <button type="button" mat-raised-button style="margin-top: 1rem;" (click)="goBack()">
                     Regresar
@@ -85,6 +99,7 @@
                     <mat-spinner diameter="35" *ngIf="uploading"></mat-spinner>
                 </button>
             </div>
+            
         </form>
     </mat-card>
 </div>
