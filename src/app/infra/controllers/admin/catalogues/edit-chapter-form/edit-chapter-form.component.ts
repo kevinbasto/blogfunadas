@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Chapter } from '../../../../../core/interfaces/chapter.interface';
+import { EditChapterService } from './edit-chapter.service';
 
 @Component({
   selector: 'app-edit-chapter-form',
@@ -12,9 +14,11 @@ export class EditChapterFormComponent implements OnInit {
   public uploading : boolean;
 
   constructor(
+    private editChapterService : EditChapterService,
     private fb : FormBuilder,
   ) {
     this.setFormData();
+    this.fetchData();
   }
 
   ngOnInit(): void {
@@ -28,7 +32,35 @@ export class EditChapterFormComponent implements OnInit {
     })
   }
 
-  submit(){}
+  private fetchData(){
+    this.editChapterService.fetchChapterData()
+    .then(res => {
+      this.title.setValue(res.title);
+      this.content.setValue(res.content);
+    })
+    .catch(err => console.log(err));
+  }
 
-  goBack(){}
+  submit(){
+    this.uploading = !this.uploading;
+    let content : Chapter = this.chapterForm.value;
+    this.editChapterService.updateData(content)
+    .then(res => { 
+      this.uploading = !this.uploading;
+      console.log(res);
+    })
+    .catch(err => { console.log(err); });
+  }
+
+  goBack(){
+    this.editChapterService.goback();
+  }
+
+  get title(){
+    return this.chapterForm.get("title");
+  }
+
+  get content(){
+    return this.chapterForm.get("content");
+  }
 }

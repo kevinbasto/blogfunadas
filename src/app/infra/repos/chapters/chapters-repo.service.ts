@@ -42,18 +42,25 @@ export class ChaptersRepoService implements ChaptersRepo{
     });
   }
   
-  async getChapter( genre : string, novel : string, chapterId : string ) : Promise<Chapter> {
-    let chapter : Chapter;
-    await this.firestore.collection(genre).doc(novel).collection('chapters').doc(chapterId).valueChanges()
-    .pipe(take(1)).toPromise()
-    .then((res : any) => { chapter = res })
-    .catch(error => { throw new DatabaseException(error); });
-    return chapter;
+  getChapter( genre : string, novel : string, chapter : string ) : Promise<Chapter> {
+    return new Promise<Chapter>((resolve, reject) => {
+      console.log(`/${genre}/${novel}/${chapter}`);
+      this.firestore.doc<Chapter>(`/${genre}/${novel}/chapters/${chapter}`).valueChanges().pipe(take(1)).toPromise()
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+    })
   }
 
-  async updateChapter( genre : string, novel : string, chapterId : string, chapter : Chapter ) : Promise<any> {
-    await this.firestore.collection(genre).doc(novel).collection('chapters').doc(chapterId).update(chapter)
-    .catch(error => { throw new DatabaseException(error); });
+  async updateChapter( genre : string, novel : string, chapter : string, content : Chapter ) : Promise<any> {
+    return new Promise<SystemMessage>(async (resolve, reject) => {
+      await this.firestore.doc(`/${genre}/${novel}/chapters/${chapter}`)
+      .update(content)
+      .catch(err => reject(err));
+      resolve({
+        name: "Chapter updated",
+        message: "the chapter has been successfully updated without any issue"
+      })
+    })
   }
 
   async deleteChapter( genre : string, novel : string, chapterId : string ) : Promise<any> {
