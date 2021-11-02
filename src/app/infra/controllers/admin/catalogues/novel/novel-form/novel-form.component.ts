@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter, OnChanges } from '@angu
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Novel } from '../../../../../../core/interfaces/novel.interface';
 import { Staff } from '../../../../../../core/interfaces/staff';
+import { LoadNovelformDataService } from '../services/load-novelform-data.service';
 
 @Component({
   selector: 'app-novel-form',
@@ -26,6 +27,7 @@ export class NovelFormComponent implements OnChanges{
 
   constructor(
     private builder : FormBuilder,
+    private novelFormDataService : LoadNovelformDataService
   ) {
     this.uploading = false;
     this.novelForm = this.builder.group({
@@ -38,24 +40,47 @@ export class NovelFormComponent implements OnChanges{
     })
     if(this.novel)
       this.novelForm.setValue(this.novel);
+    this.novelFormDataService.getStaff()
+    .then(staff => {
+      this.staff = staff;
+    })
   }
 
   ngOnChanges(){
-    if(this.novel && !this.isDataLoaded){
+    if(!this.isDataLoaded){
       this.loadData();
     }
-
     if(this.done)
       this.uploading = !this.uploading;
   }
 
-  loadData(){
+  async loadData(){
+    
     let fields = ["name", "chapters", "status", "author", "genre"]
     if(this.novel)
       for(let field of fields)
         this.novelForm.get(field).setValue(this.novel[field]);
-    
-    
+    else
+      this.setDefaultData();
+    this.isDataLoaded = true;
+  }
+
+  private async setDefaultData(){
+    await this.novelFormDataService.getDefaultEditor()
+    .then(editor => {
+      this.addTranslator();
+      this.translators.at(0).get("translator").setValue(editor)
+    })
+    let genre : string = this.novelFormDataService.getGenre();
+    this.novelForm.get("genre").setValue(genre);
+    this.novelForm.get("chapters").setValue(0);
+    this.disableFields();
+  }
+
+  private disableFields(){
+    this.novelForm.get("genre").disable();
+    this.novelForm.get("chapters").disable();
+    this.translators.at(0).get("translator").disable();
   }
 
   submitForm(){
