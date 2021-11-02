@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ChaptersHeaders } from '../../../../../core/constants/headers';
-import { Novel } from '../../../../../core/interfaces/novel.interface';
-import { Staff } from '../../../../../core/interfaces/staff';
-import { TableHeader } from '../../../../../core/interfaces/table-header';
+import { ChaptersHeaders } from '../../../../../../core/constants/headers';
+import { Novel } from '../../../../../../core/interfaces/novel.interface';
+import { Staff } from '../../../../../../core/interfaces/staff';
+import { TableHeader } from '../../../../../../core/interfaces/table-header';
 import { EditNovelFormService } from './edit-novel-form.service';
 
 @Component({

@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Chapter } from '../../../../../core/interfaces/chapter.interface';
-import { SystemMessage } from '../../../../../core/interfaces/system-message';
-import { ChaptersRepo } from '../../../../../core/repos/chapters.repo';
-import { CHAPTERS_REPO } from '../../../../repos/tokens';
+import { Chapter } from '../../../../../../core/interfaces/chapter.interface';
+import { SystemMessage } from '../../../../../../core/interfaces/system-message';
+import { ChaptersRepo } from '../../../../../../core/repos/chapters.repo';
+import { CHAPTERS_REPO } from '../../../../../repos/tokens';
 
 @Injectable({
   providedIn: 'root'

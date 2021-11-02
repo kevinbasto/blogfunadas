@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Chapter } from '../../../../../core/interfaces/chapter.interface';
+import { Chapter } from '../../../../../../core/interfaces/chapter.interface';
 import { EditChapterService } from './edit-chapter.service';
 
 @Component({

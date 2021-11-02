@@ -4,12 +4,12 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
-import { Novel } from '../../../../../core/interfaces/novel.interface';
-import { Staff } from '../../../../../core/interfaces/staff';
-import { SystemMessage } from '../../../../../core/interfaces/system-message';
-import { User } from '../../../../../core/interfaces/user.interface';
-import { NovelsRepo } from '../../../../../core/repos/novels.repo';
-import { NOVELS_REPO } from '../../../../repos/tokens';
+import { Novel } from '../../../../../../core/interfaces/novel.interface';
+import { Staff } from '../../../../../../core/interfaces/staff';
+import { SystemMessage } from '../../../../../../core/interfaces/system-message';
+import { User } from '../../../../../../core/interfaces/user.interface';
+import { NovelsRepo } from '../../../../../../core/repos/novels.repo';
+import { NOVELS_REPO } from '../../../../../repos/tokens';
 
 @Injectable({
   providedIn: 'root',
@@ -61,6 +61,12 @@ export class NovelCreationService {
       resolve(user.uid);
     })
     })
+  }
+
+  public goBack(){
+    let parseTree : Array<string> = this.router.url.split("/");
+    let genre : string = parseTree[parseTree.length - 2];
+    this.router.navigate([`/admin/${genre}`])
   }
 
 }

@@ -8,4 +8,5 @@ export interface Novel{
     translators : Array<string>;
     cover? : string;
     url? : string;
+    coverFile? : File;
 }
