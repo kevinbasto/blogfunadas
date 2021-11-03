@@ -11,4 +11,3 @@ export const GENRES_REPO = new InjectionToken<GenresRepo>('GenresRepo');
 export const NOVELS_REPO = new InjectionToken<NovelsRepo>('NovelsRepo');
 export const CHAPTERS_REPO = new InjectionToken<ChaptersRepo>('ChaptersRepo');
 export const COMMENTS_REPO = new InjectionToken<CommentsRepo>('CommentsRepo');
-export const CREATE_NOVEL_REPO = new InjectionToken<CreateNovelRepo>('CreateNovelRepo')

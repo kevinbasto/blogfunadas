@@ -30,6 +30,12 @@
     border: 1px solid #949494;
 }
 
+.cover{
+    max-width: 98%; 
+    object-fit: contain; 
+    margin: auto;
+}
+
 @media(min-width:980px){
     .form-container{
         display: flex;
@@ -37,6 +43,10 @@
     
     .img-container{
         max-width: 50%;
+    }
+
+    .cover{
+        max-height: 600px;
     }
 }
 

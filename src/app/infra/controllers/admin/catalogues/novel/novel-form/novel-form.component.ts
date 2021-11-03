@@ -63,7 +63,6 @@ export class NovelFormComponent implements OnChanges{
   }
 
   private setNovelData(){
-    console.log(this.novel);
     let fields = ["name", "chapters", "status", "author", "genre"]
     for(let field of fields)
       this.novelForm.get(field).setValue(this.novel[field]);
@@ -102,6 +101,8 @@ export class NovelFormComponent implements OnChanges{
     rawValue.translators = rawValue.translators.map(translator => { return translator.translator})
     let novel : Novel = rawValue;
     novel.coverFile = this.file;
+    novel = { ...this.novel, ...novel};
+    console.log(novel);
     this.upload.emit(novel);
   }
 

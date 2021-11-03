@@ -1,99 +1,14 @@
 <div style="width:  100%; display: grid; place-items:  center; padding-top: 1rem;">
     <mat-card class="mat-elevation-z8">
-        <!--<h1>Editar novela</h1>
-        <form [formGroup]="novelForm" (submit)="submit()" >
-            <mat-form-field style="width: 100%;">
-                <mat-label>
-                    Nombre de la novela
-                </mat-label>
-                <input matInput type="text" formControlName="name">
-                <mat-error>
-                    ¡Introduce el nombre de la novela!
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field style="width: 100%;">
-                <mat-label>
-                    Capítulos
-                </mat-label>
-                <input matInput type="text" formControlName="chapters">
-            </mat-form-field>
-            <mat-form-field style="width: 100%;">
-                <mat-label>
-                    status
-                </mat-label>
-                <mat-select formControlName="status">
-                    <mat-option value="emisión">
-                        En emisión
-                    </mat-option>
-                    <mat-option value="hiatus">
-                        En hiatus
-                    </mat-option>
-                    <mat-option value="terminada">
-                        terminada
-                    </mat-option>
-                </mat-select>
-                <mat-error>
-                    ¡No puedes dejar este campo vacío!
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field style="width: 100%;">
-                <mat-label>
-                    Autor
-                </mat-label>
-                <input matInput type="text" formControlName="author">
-                <mat-error>
-                    ¡¿Quién escribio esta novela?!
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field style="width: 100%;">
-                <mat-label>
-                    Género
-                </mat-label>
-                <input matInput type="text" formControlName="genre">
-            </mat-form-field>
-            <div formArrayName="translators">
-                <div  *ngFor="let translator of translators.controls; let  i = index" [formGroupName]="i">
-                    <mat-form-field >
-                        <mat-label>
-                            Traductor
-                        </mat-label>
-                        <mat-select formControlName="translator">
-                            <mat-option *ngFor="let staffPerson of staff" value="{{staffPerson.uid}}">
-                                {{staffPerson.username}}
-                            </mat-option>
-                        </mat-select>
-                        <mat-error>
-                            ¡no puede quedar vacío!
-                        </mat-error>
-                    </mat-form-field>
-                    <button [disabled]="translators.at(i).disabled" style="margin-left: 5px;" mat-raised-button color="warn" (click)="deleteTranslator(i)">
-                        eliminar
-                    </button>
-                </div>
-                <button type="button" mat-raised-button color="primary" (click)="addTranslator()">
-                    Agregar traductor
+        <h1>Editar novela</h1>
+        <app-novel-form [novel]="novel" (upload)="upload($event)" [done]="done" (navigateBack)="goBack()"></app-novel-form>
+        <div style="padding-top: 1em; ">
+            <div style="width: 100%; display: flex; justify-content: flex-end; border-top:  1px dashed  #949494;">
+                <button mat-raised-button color = "primary" type="button" (click)="createChapter()" style="margin-top: 1rem;">
+                    Añadir entrada
                 </button>
             </div>
-            <div style="padding-top: 1em;">
-                <div style="width: 100%; display: flex; justify-content: flex-end;">
-                    <button mat-raised-button color = "primary" type="button" (click)="createChapter()">
-                        Añadir entrada
-                    </button>
-                </div>
-                <app-generic-table [dataSource]="dataSource" [inputHeaders]="chaptersColumns"></app-generic-table>
-            </div>
-            <div style="display: flex; justify-content: space-between; width: 100%;">
-                <button type="button" mat-raised-button style="margin-top: 1rem;" (click)="goBack()">
-                    Regresar
-                </button>
-                <button type="submit" mat-raised-button color="primary" style="margin-top: 1rem;" [disabled]="novelForm.invalid || uploading">
-                    <span *ngIf="!uploading">
-                        Actualizar Novela
-                    </span>
-                    <mat-spinner diameter="35" *ngIf="uploading"></mat-spinner>
-                </button>
-            </div>
-        </form>-->
-        <app-novel-form [novel]="novel"></app-novel-form>
+            <app-generic-table [dataSource]="dataSource" [inputHeaders]="chaptersColumns"></app-generic-table>
+        </div>
     </mat-card>
 </div>

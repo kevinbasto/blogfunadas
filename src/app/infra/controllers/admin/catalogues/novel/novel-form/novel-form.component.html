@@ -1,6 +1,6 @@
 <div class="form-container">
     <div *ngIf="preview" class="img-container">
-        <img src="{{preview? preview : ''}}" style="max-width: 98%; object-fit: contain; margin: auto;">
+        <img src="{{preview? preview : ''}}" class="cover">
     </div>
     <div>
         <form [formGroup]="novelForm" (submit)="submitForm()">
@@ -99,7 +99,7 @@
                 <button type="submit" mat-raised-button color="primary" style="margin-top: 1rem;"
                     [disabled]="novelForm.invalid || uploading">
                     <span *ngIf="!uploading">
-                        Crear Novela
+                        Guardar
                     </span>
                     <mat-spinner diameter="35" *ngIf="uploading"></mat-spinner>
                 </button>

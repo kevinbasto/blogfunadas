@@ -8,16 +8,15 @@ import { Novel } from '../../../../../../../core/interfaces/novel.interface';
 import { Staff } from '../../../../../../../core/interfaces/staff';
 import { SystemMessage } from '../../../../../../../core/interfaces/system-message';
 import { User } from '../../../../../../../core/interfaces/user.interface';
-import { NovelsRepo } from '../../../../../../../core/repos/novels.repo';
 import { CreateNovelRepo } from '../../../../../../../core/repos/novels/create-novel.repo';
-import { CREATE_NOVEL_REPO, NOVELS_REPO } from '../../../../../../repos/tokens';
+import { CREATE_NOVEL_REPO } from '../../../../../../repos/novels/novels.tokens';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CreateNovelService {
   constructor(
-    @Inject(NOVELS_REPO) private novelsRepo: NovelsRepo,
+    
     private firestore: AngularFirestore,
     private afauth : AngularFireAuth,
     private router : Router,

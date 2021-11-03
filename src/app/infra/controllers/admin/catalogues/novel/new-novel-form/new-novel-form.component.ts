@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Novel } from '../../../../../../core/interfaces/novel.interface';
-import { CreateNovelService } from '../services/create/create-novel.service';
+import { CreateNovelService } from '../services/create-novel/create-novel.service';
 
 
 @Component({
