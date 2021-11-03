@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Novel } from '../../../../../../core/interfaces/novel.interface';
-import { NovelCreationService } from './new-novel-creation.service';
+import { CreateNovelService } from '../services/create/create-novel.service';
 
 
 @Component({
@@ -14,13 +14,20 @@ export class NewNovelFormComponent{
   public done : boolean;
 
   constructor(
-    private createNovelService : NovelCreationService
+    private createNovelService : CreateNovelService
   ) {
     this.done = false;
   }
 
   upload(novel : Novel){
-    console.log(novel);
+    this.done  = false;
+    this.createNovelService.createNovel(novel)
+    .then(message => {
+      console.log(message);
+    })
+    .catch(error => {
+      console.log(error);
+    })
     this.done = true;
   }
 

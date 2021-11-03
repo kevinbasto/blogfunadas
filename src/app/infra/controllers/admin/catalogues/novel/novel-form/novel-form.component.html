@@ -77,7 +77,6 @@
                     Agregar traductor
                 </button>
             </div>
-            
             <div style="width: 100%; margin-top: 1em;">
                 <div class="dropzone" dropzone (hovered)="toggleHover($event)" (dropped)="onDrop($event)"
                     [class.hovering]="isHovering">
@@ -90,10 +89,9 @@
                         <p style="text-align: center;">{{ file? file.name + " seleccionado" : "No hay imagen
                             seleccionada"}}</p>
                     </label>
-        
+                    
                 </div>
             </div>
-            
             <div style="display: flex; justify-content: space-between; width: 100%;">
                 <button type="button" mat-raised-button style="margin-top: 1rem;" (click)="goBack()">
                     Regresar

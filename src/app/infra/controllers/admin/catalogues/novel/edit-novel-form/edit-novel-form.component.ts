@@ -19,6 +19,7 @@ export class EditNovelFormComponent implements OnInit {
   public uploading : boolean;
   public dataSource : string;
   public chaptersColumns : Array<TableHeader>;
+  public novel : Novel;
 
   constructor(
     private formBuilder : FormBuilder,

@@ -2,7 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter, OnChanges } from '@angu
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Novel } from '../../../../../../core/interfaces/novel.interface';
 import { Staff } from '../../../../../../core/interfaces/staff';
-import { LoadNovelformDataService } from '../services/load-novelform-data.service';
+import { LoadNovelformDataService } from '../services/novel-form-data/load-novel-form-data.service';
 
 @Component({
   selector: 'app-novel-form',
@@ -47,7 +47,7 @@ export class NovelFormComponent implements OnChanges{
   }
 
   ngOnChanges(){
-    if(!this.isDataLoaded){
+    if(!this.isDataLoaded || this.novel){
       this.loadData();
     }
     if(this.done)
@@ -55,14 +55,27 @@ export class NovelFormComponent implements OnChanges{
   }
 
   async loadData(){
-    
-    let fields = ["name", "chapters", "status", "author", "genre"]
     if(this.novel)
-      for(let field of fields)
-        this.novelForm.get(field).setValue(this.novel[field]);
+      this.setNovelData();
     else
       this.setDefaultData();
     this.isDataLoaded = true;
+  }
+
+  private setNovelData(){
+    console.log(this.novel);
+    let fields = ["name", "chapters", "status", "author", "genre"]
+    for(let field of fields)
+      this.novelForm.get(field).setValue(this.novel[field]);
+    let index : number = 0;
+    for(let translator of this.novel.translators){
+      this.translators.at(index).get("translator").setValue(translator);
+      if(index != 0)
+        this.addTranslator();
+        index++;
+    }
+    if(this.novel.cover)
+      this.preview = this.novel.cover;
   }
 
   private async setDefaultData(){
@@ -85,7 +98,10 @@ export class NovelFormComponent implements OnChanges{
 
   submitForm(){
     this.uploading = !this.uploading;
-    let novel : Novel = this.novelForm.value;
+    let rawValue = this.novelForm.getRawValue();
+    rawValue.translators = rawValue.translators.map(translator => { return translator.translator})
+    let novel : Novel = rawValue;
+    novel.coverFile = this.file;
     this.upload.emit(novel);
   }
 

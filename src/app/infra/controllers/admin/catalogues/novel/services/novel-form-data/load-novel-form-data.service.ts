@@ -2,10 +2,10 @@ import { Inject, Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
-import { Staff } from '../../../../../../core/interfaces/staff';
-import { User } from '../../../../../../core/interfaces/user.interface';
-import { AuthService } from '../../../../../services/auth-related/auth/auth.service';
-import { AuthServicetoken } from '../../../../../services/services.token';
+import { Staff } from '../../../../../../../core/interfaces/staff';
+import { User } from '../../../../../../../core/interfaces/user.interface';
+import { AuthService } from '../../../../../../services/auth-related/auth/auth.service';
+import { AuthServicetoken } from '../../../../../../services/services.token';
 
 @Injectable({
   providedIn: 'root',
