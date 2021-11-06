@@ -12,17 +12,21 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { ServicesModule } from '../services/services.module';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
+import { FileDropperComponent } from './file-dropper/file-dropper.component';
+import { DirectivesModule } from '../directives/directives.module';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     SidebarComponent,
-    TableComponent
+    TableComponent,
+    FileDropperComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     ServicesModule,
+    DirectivesModule,
 
     MatSidenavModule,
     MatIconModule,
@@ -35,7 +39,8 @@ import { MatButtonModule } from '@angular/material/button';
   exports : [
     NavbarComponent,
     SidebarComponent,
-    TableComponent
+    TableComponent,
+    FileDropperComponent
   ]
 })
 export class ComponentsModule { }
