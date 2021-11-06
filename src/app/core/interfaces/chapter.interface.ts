@@ -1,5 +1,5 @@
 export interface Chapter{
     title : string;
-    content : string;
+    content : Array<string>;
     id? : number;
 }
