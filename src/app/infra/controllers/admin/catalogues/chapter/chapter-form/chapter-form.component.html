@@ -1,0 +1,10 @@
+<form [formGroup]="chapterForm">
+    <mat-form-field>
+        <mat-label>
+            Nombre del capítulo
+        </mat-label>
+        
+        <input matInput type="text" formControlName="title">
+    </mat-form-field>
+    <file-dropper></file-dropper>
+</form>
