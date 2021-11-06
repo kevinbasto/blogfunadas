@@ -15,7 +15,7 @@
                 <mat-label>
                     Contenido
                 </mat-label>
-                <textarea matInput type="text" formControlName="content" [ngStyle]="{ 'height' : textAreaSize * fontSize + 'px'}"></textarea>
+                <textarea cdkTextareaAutosize matInput type="text" formControlName="content" #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="5" cdkAutosizeMaxRows="20"></textarea>
                 <mat-error>
                     ¡Este campo no puede estar vacío!
                 </mat-error>
@@ -32,5 +32,6 @@
                 </button>
             </div>
         </form>
+        <chapter-form></chapter-form>
     </mat-card>
 </div>

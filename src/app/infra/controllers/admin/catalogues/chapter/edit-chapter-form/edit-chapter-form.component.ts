@@ -12,15 +12,11 @@ export class EditChapterFormComponent implements OnInit {
 
   public chapterForm : FormGroup;
   public uploading : boolean;
-  public textAreaSize : number;
-  public fontSize : number;
 
   constructor(
     private editChapterService : EditChapterService,
     private fb : FormBuilder,
   ) {
-    this.textAreaSize = 20;
-    this.fontSize = 32;
     this.setFormData();
     this.fetchData();
   }

@@ -17,6 +17,8 @@ import { NewChapterFormComponent } from './chapter/new-chapter-form/new-chapter-
 import { EditChapterFormComponent } from './chapter/edit-chapter-form/edit-chapter-form.component'; 
 import { DirectivesModule } from '../../../directives/directives.module';
 import { NovelFormComponent } from './novel/novel-form/novel-form.component';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { ChapterFormComponent } from './chapter/chapter-form/chapter-form.component';
 
 const routes : Routes = [
   {
@@ -51,7 +53,8 @@ const routes : Routes = [
     EditNovelFormComponent,
     NewChapterFormComponent,
     EditChapterFormComponent,
-    NovelFormComponent
+    NovelFormComponent,
+    ChapterFormComponent
   ],
   imports: [
     CommonModule,
@@ -64,7 +67,8 @@ const routes : Routes = [
     MatSelectModule,
     MatProgressSpinnerModule,
     GuardsModule,
-    DirectivesModule
+    DirectivesModule,
+    TextFieldModule
   ]
 })
 export class CataloguesModule { }
