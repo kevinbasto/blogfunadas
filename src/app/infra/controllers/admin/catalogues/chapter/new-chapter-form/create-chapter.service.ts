@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Chapter } from '../../../../../../core/interfaces/chapter.interface';
+import { Chapter, ChapterContent } from '../../../../../../core/interfaces/chapter.interface';
 import { SystemMessage } from '../../../../../../core/interfaces/system-message';
 import { ChaptersRepo } from '../../../../../../core/repos/chapters.repo';
 import { CHAPTERS_REPO } from '../../../../../repos/tokens';
@@ -35,5 +35,9 @@ export class CreateChapterService {
 
   goBack(){
     this.router.navigate([`/admin/${this.genre}/${this.novel}`]);
+  }
+
+  upload(chapter : ChapterContent){
+    console.log(chapter);
   }
 }
