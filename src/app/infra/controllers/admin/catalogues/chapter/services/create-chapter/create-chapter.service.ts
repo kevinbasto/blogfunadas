@@ -22,13 +22,17 @@ export class CreateChapterService {
     this.genre = splitRoute[splitRoute.length - 3];
   }
 
-  uploadChapter(chapterContent : ChapterContent){
-    this.CreateChapter.createChapter(this.genre, this.novel, chapterContent)
-    .then(res => console.log(res))
+  async uploadChapter(chapterContent : ChapterContent){
+    await this.CreateChapter.createChapter(this.genre, this.novel, chapterContent)
+    .then(res => {
+      console.log(res)
+      this.router.navigate([`/admin/${this.genre}/${this.novel}`])
+    })
     .catch(error => console.log(error));
     this.CreateChapter.filesUploaded
     .pipe(finalize(() => { this.CreateChapter.filesUploaded.unsubscribe()}))
     .subscribe(percentage => { console.log(`${percentage}% uploaded`);})
+    return;
   }
 
   goBack(){

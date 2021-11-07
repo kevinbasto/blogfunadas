@@ -13,7 +13,7 @@ export class NewChapterFormComponent implements OnInit {
 
   public chapterForm : FormGroup;
   public uploading : boolean;
-  public done : boolean;
+  
 
   constructor(
     private createChapterService : CreateChapterService,
@@ -37,7 +37,9 @@ export class NewChapterFormComponent implements OnInit {
     this.createChapterService.goBack();
   }
 
-  upload(chapter : ChapterContent){
+  async upload(chapter : ChapterContent){
+    console.log(chapter);
     this.createChapterService.uploadChapter(chapter);
+    
   }
 }

@@ -1,4 +1,4 @@
-<form [formGroup]="chapterForm" (submit)="submit()">
+<!--<form [formGroup]="chapterForm" (submit)="submit()">
     <mat-form-field style="width: 100%;">
         <mat-label>
             Nombre del capítulo
@@ -44,7 +44,71 @@
         <button type="button" mat-raised-button (click)="returnToPrevious()">
             Regresar
         </button>
-        <button type="submit" mat-raised-button color="primary" [disabled]="chapterForm.invalid">
+        <button type="submit" mat-raised-button color="primary" >
+            <span *ngIf="!uploading">
+                Guardar
+            </span>
+            <mat-spinner diameter="35" *ngIf="uploading"></mat-spinner>
+        </button>
+    </div>
+</form>-->
+
+<form [formGroup]="chapterForm" (submit)="submit()">
+    <mat-form-field style="width: 100%;">
+        <mat-label>
+            Nombre del capítulo
+        </mat-label>
+        <input type="text" matInput formControlName="title">
+    </mat-form-field>
+    <!-- the field for the array-->
+    <div formArrayName="content">
+        <div *ngFor="let subContent of chapterContent.controls; index as i; " [formGroupName]="i">
+            <mat-form-field style="width: 100%;" *ngIf="subContent.get('type').value == 'text'" >
+                <mat-label>
+                    Introduce el contenido aquí
+                </mat-label>
+                <textarea matInput formControlName="content" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="5" cdkAutosizeMaxRows="20"></textarea>
+                <mat-error>¡No dejes el campo vacío!</mat-error>
+            </mat-form-field>
+            <div *ngIf="subContent.get('type').value == 'image'">
+                <img src="{{content[i]}}" alt="" style="max-width: 260px; object-fit: contain;">
+                <input type="file" (change)="pushFile($event, i)" id="fileHandler{{i}}" style="display: none;">
+                <label for="fileHandler{{i}}"  class = "dropzone" dropzone (dropped)="pushFile($event, i)">
+                    <p>Arrastra o haz click aquí para subir una imagen</p>
+                    <p>
+                        {{subContent.get("content").value? subContent.get("content").value + " seleccionado" : "no hay archivo seleccionado"}}
+                    </p>
+                </label>
+                
+            </div>
+            <button mat-raised-button color="warn" type="button" (click)="removeContent(i)">
+                Eliminar
+            </button>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>
+                    Selecciona un tipo de contenido
+                </mat-label>
+                <mat-select (selectionChange)="updateSelector($event)">
+                    <mat-option value="text" selected>
+                        Texto
+                    </mat-option>
+                    <mat-option value="image">
+                        Imagen
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button type="button" mat-raised-button color="primary" (click)="addContent()">
+                Añadir Contenido
+            </button>
+        </div>
+    </div>
+    <div style="display: flex; width: 100%; justify-content: space-between; margin-top: 1em;">
+        <button type="button" mat-raised-button (click)="returnToPrevious()">
+            Regresar
+        </button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="chapterForm.invalid || uploading">
             <span *ngIf="!uploading">
                 Guardar
             </span>

@@ -1,25 +1,26 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 
 import { Chapter, ChapterContent } from '../../../../../../core/interfaces/chapter.interface';
+import { IndexedFile } from '../../../../../../core/interfaces/indexed-file';
 
 @Component({
   selector: 'chapter-form',
   templateUrl: './chapter-form.component.html',
   styleUrls: ['./chapter-form.component.css']
 })
-export class ChapterFormComponent{
+export class ChapterFormComponent implements OnChanges{
 
   public chapterForm : FormGroup;
-  private files : Array<File>;
-  public contentStructure : Array<string>;
-  public currentSelector : string;  
-  public contentValue : Array<any>;
+  public files : Array<File>;
+  public currentSelector : string;
+  public content : Array<string | ArrayBuffer>;
   public uploading : boolean = false;
 
   @Output() chapter : EventEmitter<ChapterContent> = new EventEmitter<ChapterContent>();
   @Output() goBack : EventEmitter<void> = new EventEmitter<void>();
+
 
   constructor(
     private builder : FormBuilder
@@ -28,16 +29,28 @@ export class ChapterFormComponent{
       title : ["", [Validators.required]],
       content : this.builder.array([])
     })
-    this.files = []
-    this.contentStructure = [];
-    this.contentValue = new Array<any>();
+    this.files = [];
+    this.content = [];
   }
 
-  async pushFile(file : File, index : number){
-    this.files.push(file);
-    this.chapterContent.at(index).get('content').setValue(file.name)
-    let buffer = await this.convertToArrayBuffer(file)
-    this.contentValue.push(buffer);
+  ngOnChanges(){
+  }
+
+  async pushFile( files : any, index : number){
+    let file : File;
+    if(files[0])
+      file = files[0];
+    else
+      file = (files.target as HTMLInputElement)?.files[0];
+    
+    this.chapterContent.at(index).get("content").setValue(file.name)
+
+    if(this.files[index])
+      this.files[index] = file
+    else
+      this.files.push(file);
+    let buffer = await this.convertToArrayBuffer(file);
+    this.content[index] = buffer;
   }
 
   convertToArrayBuffer(file : File){
@@ -58,34 +71,28 @@ export class ChapterFormComponent{
     const content = this.builder.group({
       content : ["", [Validators.required]],
       type : [this.currentSelector]
-    });
+    })
     this.chapterContent.push(content);
-    this.contentStructure.push(this.currentSelector);
-    if(this.currentSelector == "text")
-      this.contentValue.push(content.get("content").value)
+    this.content.push(this.chapterContent.at(this.chapterContent.length - 1).get("type").value);
   }
 
   removeContent(index : number){
-    //file remotion from the array
-    let name = this.chapterContent.at(index).get("content").value;
+    // clear of the file containment
+    let fileName = this.chapterContent.at(index).get("content").value;
     this.files = this.files.filter(file => {
-      if(file.name != name)
+      if(file.name != fileName)
         return file;
     })
-    //removing it from the array
+    // clear of the file
     this.chapterContent.removeAt(index);
-    //removing it from the chapter structure
-    let newContentStructure : Array<string> = new Array<string>();
-    for(let i = 0; i < this.contentStructure.length; i++){
+    //remove it from the file
+    let newContent : Array<string | ArrayBuffer> = [];
+
+    for(let i = 0; i < this.content.length; i++)
       if(i != index)
-        newContentStructure.push(this.contentStructure[i])
-    }
-    this.contentStructure = newContentStructure;
-    //cleaning up the file buffer array
-    this.contentValue = this.contentValue.filter(element => {
-      if(element != this.contentValue[index])
-        return element;
-    })
+        newContent.push(this.content[i]);
+    this.content = newContent;
+    console.log(this.content);
   }
 
   updateSelector($event : MatSelectChange){
@@ -93,6 +100,7 @@ export class ChapterFormComponent{
   }
 
   submit(){
+    this.uploading = true;
     let files = this.files;
     let chapter : Chapter = this.chapterForm.value;
     this.chapter.emit({
