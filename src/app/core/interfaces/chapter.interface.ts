@@ -7,6 +7,7 @@ export interface Chapter{
     title : string;
     content : Array<content>;
     id? : number;
+    url? : string;
 }
 
 export interface ChapterContent{

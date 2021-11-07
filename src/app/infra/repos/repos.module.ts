@@ -9,13 +9,15 @@ import { ChaptersRepoService } from './chapters/chapters-repo.service';
 import { CommentsRepoService } from './comments/comments-repo.service';
 import { CreateNovelService } from './novels/create-novel/create-novel.service';
 import { NovelsModule } from './novels/novels.module';
+import { ChaptersModule } from './chapters/chapters.module';
 
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    NovelsModule
+    NovelsModule,
+    ChaptersModule
   ],
   providers: [
     {
