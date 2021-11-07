@@ -1,10 +1,54 @@
-<form [formGroup]="chapterForm">
-    <mat-form-field>
+<form [formGroup]="chapterForm" (submit)="submit()">
+    <mat-form-field style="width: 100%;">
         <mat-label>
             Nombre del capítulo
         </mat-label>
-        
         <input matInput type="text" formControlName="title">
+        <mat-error>
+            ¡No dejes este campo sin rellenar!
+        </mat-error>
     </mat-form-field>
-    <file-dropper></file-dropper>
+    <div formArrayName="content">
+        <div *ngFor="let content of chapterContent.controls; let i = index" [formGroupName]="i">
+            <mat-form-field style="width: 100%;" *ngIf="contentStructure[i] == 'text' ">
+                <mat-label>
+                    Introduce el contenido aquí
+                </mat-label>
+                <textarea matInput formControlName="content" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="5" cdkAutosizeMaxRows="20"></textarea>
+                <mat-error>¡No dejes el campo vacío!</mat-error>
+            </mat-form-field>
+            <div *ngIf="contentStructure[i] == 'image' ">
+                <img *ngIf="contentValue[i]" src="{{contentValue[i]}}" alt="">
+                <file-dropper (file)="pushFile($event, i)"></file-dropper>
+            </div>
+            <button [ngStyle]="{ 'margin-top' : contentStructure[i] == 'image' ? '.5rem' : '0' }" style="margin-bottom: .5rem;" type="button" mat-raised-button color="warn" (click)="removeContent(i)">Eliminar contenido</button>
+        </div>
+    </div>
+    <div>
+        <mat-form-field style="margin-top: 1em;">
+            <mat-label>Selecciona el tipo de contenido a añadir</mat-label>
+            <mat-select (selectionChange)="updateSelector($event)">
+                <mat-option value="text">
+                    Texto
+                </mat-option>
+                <mat-option value="image">
+                    Imagen
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button type="button" mat-raised-button color="primary" (click)="addContent()">
+            Añadir Elemento
+        </button>
+    </div>
+    <div style="display: flex; width: 100%; justify-content: space-between; margin-top: 1em;">
+        <button type="button" mat-raised-button (click)="returnToPrevious()">
+            Regresar
+        </button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="chapterForm.invalid">
+            <span *ngIf="!uploading">
+                Guardar
+            </span>
+            <mat-spinner diameter="35" *ngIf="uploading"></mat-spinner>
+        </button>
+    </div>
 </form>
