@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Chapter } from '../../../../../../core/interfaces/chapter.interface';
-import { EditChapterService } from './edit-chapter.service';
+import { EditChapterService } from '../services/edit-chapter/edit-chapter.service';
+import { FetchChapterService } from '../services/fetch-chapter/fetch-chapter.service';
+
 
 @Component({
   selector: 'app-edit-chapter-form',
@@ -10,57 +11,21 @@ import { EditChapterService } from './edit-chapter.service';
 })
 export class EditChapterFormComponent implements OnInit {
 
-  public chapterForm : FormGroup;
-  public uploading : boolean;
+  chapter : Chapter
 
   constructor(
-    private editChapterService : EditChapterService,
-    private fb : FormBuilder,
+    private editChaperService : EditChapterService,
+    private fethcChapterService : FetchChapterService
   ) {
-    this.setFormData();
-    this.fetchData();
+    this.fetchData()
   }
 
-  ngOnInit(): void {
-  }
-
-  setFormData(){
-    this.uploading = false;
-    this.chapterForm = this.fb.group({
-      title : ["", [ Validators.required ]],
-      content : ["", [ Validators.required ]]
-    })
-  }
+  ngOnInit(): void {}
 
   private fetchData(){
-    this.editChapterService.fetchChapterData()
-    .then(res => {
-      this.title.setValue(res.title);
-      this.content.setValue(res.content);
-    })
-    .catch(err => console.log(err));
+    this.fethcChapterService.fetchChapter()
+    .then(res => {})
+    .catch(err => {});
   }
 
-  submit(){
-    this.uploading = !this.uploading;
-    let content : Chapter = this.chapterForm.value;
-    this.editChapterService.updateData(content)
-    .then(res => { 
-      this.uploading = !this.uploading;
-      console.log(res);
-    })
-    .catch(err => { console.log(err); });
-  }
-
-  goBack(){
-    this.editChapterService.goback();
-  }
-
-  get title(){
-    return this.chapterForm.get("title");
-  }
-
-  get content(){
-    return this.chapterForm.get("content");
-  }
 }
