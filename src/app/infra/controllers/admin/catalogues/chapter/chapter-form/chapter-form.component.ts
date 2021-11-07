@@ -20,7 +20,7 @@ export class ChapterFormComponent implements OnChanges{
 
   @Output() chapter : EventEmitter<ChapterContent> = new EventEmitter<ChapterContent>();
   @Output() goBack : EventEmitter<void> = new EventEmitter<void>();
-
+  @Input() Chapter : Chapter;
 
   constructor(
     private builder : FormBuilder
@@ -34,6 +34,8 @@ export class ChapterFormComponent implements OnChanges{
   }
 
   ngOnChanges(){
+    if(this.Chapter)
+      console.log(this.Chapter);
   }
 
   async pushFile( files : any, index : number){
