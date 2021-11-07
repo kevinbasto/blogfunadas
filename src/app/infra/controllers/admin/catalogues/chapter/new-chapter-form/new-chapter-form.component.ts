@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Chapter, ChapterContent } from '../../../../../../core/interfaces/chapter.interface';
-import { CreateChapterService } from './create-chapter.service';
+import { CreateChapterService } from '../services/create-chapter/create-chapter.service';
+
 
 @Component({
   selector: 'app-new-chapter-form',
@@ -37,6 +38,6 @@ export class NewChapterFormComponent implements OnInit {
   }
 
   upload(chapter : ChapterContent){
-    console.log(chapter);
+    this.createChapterService.uploadChapter(chapter);
   }
 }

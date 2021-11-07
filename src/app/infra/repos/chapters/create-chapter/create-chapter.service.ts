@@ -19,6 +19,7 @@ export class CreateChapterService implements CreateChapter{
 
   async createChapter(genre : string, novel : string, chapter : ChapterContent) : Promise<SystemMessage>{
     try {
+      chapter.chapter.id = await this.getId(genre, novel);
       chapter.chapter.url = await this.uploadText(genre, novel, chapter.chapter);
       let urls = await this.uploadFiles(genre, novel, chapter.chapter.url, chapter.files);
       let url : number = 0;
@@ -29,6 +30,7 @@ export class CreateChapterService implements CreateChapter{
         }
       }
       await this.updateChapter(genre, novel, chapter.chapter.url, chapter.chapter);
+      await this.updateMeta(genre, novel, chapter.chapter.id);
     } catch (error) {
       throw error;
     }
@@ -36,6 +38,16 @@ export class CreateChapterService implements CreateChapter{
       name : "chapter uploaded",
       message: "the chapter was successfully uploaded"
     };
+  }
+
+  private async getId(genre : string, novel : string): Promise<number>{
+    let id : number;
+    await this.firestore.doc(`/${genre}/${novel}/chapters/meta`)
+    .valueChanges().pipe(take(1)).toPromise()
+    .then((meta : any) => id = meta? meta.size + 1 : 1)
+    .catch(err => {throw err});
+    console.log(id);
+    return id;
   }
 
   private async uploadText(genre : string, novel : string, chapter : Chapter) : Promise<string>{
@@ -55,7 +67,7 @@ export class CreateChapterService implements CreateChapter{
       await task.snapshotChanges()
       .pipe(finalize(() => {
         uploadedFilesCount++;
-        this.filesUploaded.next((files.length / uploadedFilesCount) * 100);
+        this.filesUploaded.next((uploadedFilesCount / files.length) * 100);
 
         ref.getDownloadURL()
         .pipe(take(1)).toPromise()
@@ -72,6 +84,13 @@ export class CreateChapterService implements CreateChapter{
       this.firestore.doc(`/${genre}/${novel}/chapters/${chapter}`).update(content)
       .then(() => resolve())
       .catch(err => reject(err));
+    })
+  }
+
+  private updateMeta(genre : string, novel : string, id : number) : Promise<void>{
+    return new Promise<void>((resolve, reject) => {
+      this.firestore.doc(`/${genre}/${novel}/chapters/meta`).update({ size : id})
+      .catch(error => {throw error});
     })
   }
 }
