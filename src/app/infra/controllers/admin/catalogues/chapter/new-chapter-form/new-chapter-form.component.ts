@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Chapter } from '../../../../../../core/interfaces/chapter.interface';
+import { Chapter, ChapterContent } from '../../../../../../core/interfaces/chapter.interface';
 import { CreateChapterService } from './create-chapter.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class NewChapterFormComponent implements OnInit {
 
   public chapterForm : FormGroup;
   public uploading : boolean;
+  public done : boolean;
 
   constructor(
     private createChapterService : CreateChapterService,
@@ -31,14 +32,11 @@ export class NewChapterFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submit(){
-    this.uploading = !this.uploading;
-    let chapter : Chapter = this.chapterForm.value;
-    this.createChapterService.submitChapter(chapter)
-    .then(() => this.uploading = !this.uploading)
-  }
-
   goBack(){
     this.createChapterService.goBack();
+  }
+
+  upload(chapter : ChapterContent){
+    console.log(chapter);
   }
 }
