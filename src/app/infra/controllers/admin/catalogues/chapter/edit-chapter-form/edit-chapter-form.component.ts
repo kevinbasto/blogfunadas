@@ -24,8 +24,10 @@ export class EditChapterFormComponent implements OnInit {
 
   private fetchData(){
     this.fethcChapterService.fetchChapter()
-    .then(res => {})
-    .catch(err => {});
+    .then(chapter => this.chapter = chapter)
+    .catch(err => {
+      console.log(err);
+    });
   }
 
 }
