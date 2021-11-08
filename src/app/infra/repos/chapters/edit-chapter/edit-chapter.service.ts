@@ -37,8 +37,6 @@ export class EditChapterService implements editChapterRepo{
           let url : string =  await this.uploadFileAndFetchUrl(file.file);
           content[file.index].content = url;
         }
-        console.log(files);
-        console.log(content);
         resolve(content)
       } catch (error) {
         reject(error);
