@@ -8,17 +8,18 @@ import { AdminComponent } from './infra/controllers/admin/admin.component';
 import { AuthComponent } from './infra/controllers/auth/auth.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentsModule } from './infra/components/components.module';
-import { AngularFireModule } from '@angular/fire';
+
 import { environment } from '../environments/environment';
-import { AngularFirestoreModule } from '@angular/fire/firestore'
-import { AngularFireAuthModule } from '@angular/fire/auth';
+
 import { GuardsModule } from './infra/guards/guards.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { ReposModule } from './infra/repos/repos.module';
 
-
-
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore'
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from "@angular/fire/storage";
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { ReposModule } from './infra/repos/repos.module';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireStorageModule,
 
     MatSidenavModule,
     MatIconModule,

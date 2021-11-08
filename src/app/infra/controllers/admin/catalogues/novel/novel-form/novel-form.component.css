@@ -1,0 +1,52 @@
+.dropzone {
+    display: flex;
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px dashed #949494;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.dropzone.hovering{
+    border: 1px solid #949494;
+}
+
+
+.img-container{
+    display: flex;
+}
+
+.fileButton{
+    cursor: pointer; 
+    border: 1px dashed #949494; 
+    border-radius: 5px; 
+    padding: 1em; 
+    background-color: #eee;
+}
+
+.fileButton:hover{
+    border: 1px solid #949494;
+}
+
+.cover{
+    max-width: 98%; 
+    object-fit: contain; 
+    margin: auto;
+}
+
+@media(min-width:980px){
+    .form-container{
+        display: flex;
+    }
+    
+    .img-container{
+        max-width: 50%;
+    }
+
+    .cover{
+        max-height: 600px;
+    }
+}
+

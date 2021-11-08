@@ -7,12 +7,17 @@ import { UsersRepoService } from './users/users-repo.service';
 import { NovelsRepoService } from './novels/novels-repo.service';
 import { ChaptersRepoService } from './chapters/chapters-repo.service';
 import { CommentsRepoService } from './comments/comments-repo.service';
+import { CreateNovelService } from './novels/create-novel/create-novel.service';
+import { NovelsModule } from './novels/novels.module';
+import { ChaptersModule } from './chapters/chapters.module';
 
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    NovelsModule,
+    ChaptersModule
   ],
   providers: [
     {
@@ -34,7 +39,7 @@ import { CommentsRepoService } from './comments/comments-repo.service';
     {
       provide: COMMENTS_REPO,
       useClass: CommentsRepoService
-    }
+    },
   ],
 })
 export class ReposModule { }

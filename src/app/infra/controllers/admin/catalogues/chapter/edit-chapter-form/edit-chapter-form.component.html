@@ -1,0 +1,37 @@
+<div style="width:  100%; display: grid; place-items:  center; padding-top: 1rem;">
+    <mat-card class="mat-elevation-z8">
+        <h1>Editar capítulo</h1>
+        <!--<form [formGroup]="chapterForm" (submit)="submit()">
+            <mat-form-field style="width: 100%;">
+                <mat-label>
+                    Nombre del capítulo
+                </mat-label>
+                <input matInput type="text" formControlName="title">
+                <mat-error>
+                    ¡Introduce el nombre del capítulo!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="width: 100%;">
+                <mat-label>
+                    Contenido
+                </mat-label>
+                <textarea cdkTextareaAutosize matInput type="text" formControlName="content" #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="5" cdkAutosizeMaxRows="20"></textarea>
+                <mat-error>
+                    ¡Este campo no puede estar vacío!
+                </mat-error>
+            </mat-form-field>
+            <div style="width: 100%; display: flex; justify-content: space-between;">
+                <button mat-raised-button (click)="goBack()" type="button">
+                    Regresar
+                </button>
+                <button type="submit" mat-raised-button color="primary" [disabled]="chapterForm.invalid || uploading" >
+                    <span *ngIf="!uploading">
+                        Añadir entrada
+                    </span>
+                    <mat-spinner diameter="35" *ngIf="uploading"></mat-spinner>
+                </button>
+            </div>
+        </form>-->
+        <chapter-form [Chapter]="chapter" (goBack)="goBack()" (chapter)="upload($event)"></chapter-form>
+    </mat-card>
+</div>
