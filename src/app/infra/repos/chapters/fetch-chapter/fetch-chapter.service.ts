@@ -4,9 +4,7 @@ import { take } from 'rxjs/operators';
 import { Chapter } from '../../../../core/interfaces/chapter.interface';
 import { FetchChapterRepo } from '../../../../core/repos/chapters/fetch-chapter';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class FetchChapterService implements FetchChapterRepo{
 
   constructor(
