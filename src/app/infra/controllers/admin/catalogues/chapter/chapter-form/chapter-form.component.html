@@ -53,7 +53,7 @@
     </div>
 </form>-->
 
-<form [formGroup]="chapterForm" (submit)="submit()">
+<form [formGroup]="chapterForm" (submit)="submit()" style="max-width: 280px">
     <mat-form-field style="width: 100%;">
         <mat-label>
             Nombre del capítulo
@@ -75,7 +75,7 @@
                 <input type="file" (change)="pushFile($event, i)" id="fileHandler{{i}}" style="display: none;">
                 <label for="fileHandler{{i}}"  class = "dropzone" dropzone (dropped)="pushFile($event, i)">
                     <p>Arrastra o haz click aquí para subir una imagen</p>
-                    <p>
+                    <p style="word-break: break-all;">
                         {{subContent.get("content").value? subContent.get("content").value + " seleccionado" : "no hay archivo seleccionado"}}
                     </p>
                 </label>

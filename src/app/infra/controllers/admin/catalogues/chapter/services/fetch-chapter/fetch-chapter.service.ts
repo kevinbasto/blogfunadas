@@ -34,4 +34,8 @@ export class FetchChapterService {
     this.novel = parseTree[parseTree.length - 2];
     this.chapter = parseTree[parseTree.length - 1];
   }
+
+  goBack(){
+    this.router.navigate([`/admin/${this.genre}/${this.novel}`])
+  }
 }

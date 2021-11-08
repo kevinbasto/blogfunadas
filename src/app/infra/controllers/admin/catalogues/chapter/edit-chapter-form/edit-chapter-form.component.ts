@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chapter } from '../../../../../../core/interfaces/chapter.interface';
+import { Chapter, ChapterContent } from '../../../../../../core/interfaces/chapter.interface';
 import { EditChapterService } from '../services/edit-chapter/edit-chapter.service';
 import { FetchChapterService } from '../services/fetch-chapter/fetch-chapter.service';
 
@@ -28,6 +28,14 @@ export class EditChapterFormComponent implements OnInit {
     .catch(err => {
       console.log(err);
     });
+  }
+
+  goBack(){
+    this.fethcChapterService.goBack();
+  }
+
+  upload(chapter : ChapterContent){
+    console.log(chapter);
   }
 
 }

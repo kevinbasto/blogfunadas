@@ -32,6 +32,6 @@
                 </button>
             </div>
         </form>-->
-        <chapter-form [Chapter]="chapter"></chapter-form>
+        <chapter-form [Chapter]="chapter" (goBack)="goBack()" (chapter)="upload($event)"></chapter-form>
     </mat-card>
 </div>

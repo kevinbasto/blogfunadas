@@ -33,10 +33,7 @@ export class ChapterFormComponent implements OnChanges{
     this.content = [];
   }
 
-  ngOnChanges(){
-    if(this.Chapter)
-      console.log(this.Chapter);
-  }
+  
 
   async pushFile( files : any, index : number){
     let file : File;
@@ -113,6 +110,21 @@ export class ChapterFormComponent implements OnChanges{
 
   returnToPrevious(){
     this.goBack.emit();
+  }
+
+  ngOnChanges(){
+    if(this.Chapter)
+      this.setChapterData();
+  }
+
+  setChapterData(){
+    this.chapterForm.get("title").setValue(this.Chapter.title)
+    for(let  i = 0; i < this.Chapter.content.length; i++){
+      this.addContent();
+      this.chapterContent.at(i).get("content").setValue(this.Chapter.content[i].content);
+      this.chapterContent.at(i).get("type").setValue(this.Chapter.content[i].type);
+      this.content[i] = this.Chapter.content[i].content;
+    }
   }
 
 }
