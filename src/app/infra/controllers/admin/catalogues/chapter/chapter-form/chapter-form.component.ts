@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 
-import { Chapter, ChapterContent } from '../../../../../../core/interfaces/chapter.interface';
+import { Chapter, ChapterContent, ChapterFile } from '../../../../../../core/interfaces/chapter.interface';
 import { IndexedFile } from '../../../../../../core/interfaces/indexed-file';
 
 @Component({
@@ -13,7 +13,7 @@ import { IndexedFile } from '../../../../../../core/interfaces/indexed-file';
 export class ChapterFormComponent implements OnChanges{
 
   public chapterForm : FormGroup;
-  public files : Array<File>;
+  public files : Array<ChapterFile>;
   public currentSelector : string;
   public content : Array<string | ArrayBuffer>;
   public uploading : boolean = false;
@@ -45,9 +45,9 @@ export class ChapterFormComponent implements OnChanges{
     this.chapterContent.at(index).get("content").setValue(file.name)
 
     if(this.files[index])
-      this.files[index] = file
+      this.files[index].file = file
     else
-      this.files.push(file);
+      this.files.push({ index : index, file : file});
     let buffer = await this.convertToArrayBuffer(file);
     this.content[index] = buffer;
   }
@@ -79,7 +79,7 @@ export class ChapterFormComponent implements OnChanges{
     // clear of the file containment
     let fileName = this.chapterContent.at(index).get("content").value;
     this.files = this.files.filter(file => {
-      if(file.name != fileName)
+      if(file.file.name != fileName)
         return file;
     })
     // clear of the file

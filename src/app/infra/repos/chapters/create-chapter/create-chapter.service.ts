@@ -3,7 +3,7 @@ import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { Subject } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
-import { Chapter, ChapterContent } from '../../../../core/interfaces/chapter.interface';
+import { Chapter, ChapterContent, ChapterFile } from '../../../../core/interfaces/chapter.interface';
 import { SystemMessage } from '../../../../core/interfaces/system-message';
 import { CreateChapter } from '../../../../core/repos/chapters/create-chapter';
 
@@ -61,11 +61,11 @@ export class CreateChapterService implements CreateChapter{
     })
   }
 
-  private async uploadFiles(genre : string, novel : string, chapter : string, files : Array<File>) : Promise<Array<string>>{
+  private async uploadFiles(genre : string, novel : string, chapter : string, files : Array<ChapterFile>) : Promise<Array<string>>{
     let uploadedFilesCount : number = 0;
     let urls : Array<string> = []
     for(let file of files){
-      let url = await this.uploadFileAndFetchUrl(genre, novel, chapter, file)
+      let url = await this.uploadFileAndFetchUrl(genre, novel, chapter, file.file)
       uploadedFilesCount++;
       this.filesUploaded.next((uploadedFilesCount / files.length) * 100);
       urls.push(url);

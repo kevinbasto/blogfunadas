@@ -35,7 +35,12 @@ export class EditChapterFormComponent implements OnInit {
   }
 
   upload(chapter : ChapterContent){
-    console.log(chapter);
+    this.editChaperService.editChapter(chapter)
+    .then((result) => {
+      console.log(result);
+    }).catch((err) => {
+      console.log(err);
+    });
   }
 
 }
