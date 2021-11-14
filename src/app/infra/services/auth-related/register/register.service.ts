@@ -20,9 +20,15 @@ export class RegisterService implements Register{
     let uid : string;
     await this.afauth.createUserWithEmailAndPassword(register.email, register.password)
     .then( (credential) => uid = credential.user.uid)
-    .catch(error => {throw error});
+    .catch(error => {
+      console.log(error);
+      throw error;
+    });
     await this.createProfileInDatabase(register, uid)
-    .catch(error => { throw error });
+    .catch(error => { 
+      console.log(error);
+      throw error;
+    });
     return this.successMessage;
   }
 
@@ -33,7 +39,10 @@ export class RegisterService implements Register{
       role: "reader"
     }
     await this.usersRepo.createUser(uid, user)
-    .catch(error => { throw new DatabaseException(error) });
+    .catch(error => { 
+      console.log(error);
+      throw new DatabaseException(error);
+    });
   }
 
   get successMessage() : SystemMessage{
