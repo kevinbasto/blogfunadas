@@ -32,7 +32,7 @@ export class RegisterService implements Register{
       email : register.email,
       role: "reader"
     }
-    this.usersRepo.createUser(uid, user)
+    await this.usersRepo.createUser(uid, user)
     .catch(error => { throw new DatabaseException(error) });
   }
 

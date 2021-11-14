@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
     private router: Router
   ) { 
     this.registerForm = this.formBuilder.group({
-      nickname : ["", [Validators.required]],
+      username : ["", [Validators.required]],
       email : ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required, Validators.minLength(8)]],
       confirmPassword : ["", [Validators.required, Validators.minLength(8)]],
@@ -40,7 +40,9 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
-    this.registerService.emailRegister(this.registerData)
+    let registerData = this.registerForm.value;
+    delete registerData.terms;
+    this.registerService.emailRegister(registerData)
     .then((result) => {
       this.message = result;
       this.messageClass = "success"
@@ -56,7 +58,7 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  get registerData() : RegisterDto{
+  get registerData(){
     return this.registerForm.value;
   }
 
