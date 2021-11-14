@@ -50,7 +50,7 @@ export class SidebarService implements Sidebar{
           name: "ir al admin",
           url : "/admin/dashboard"
         })
-      else
+      else if(role != "reader")
         menu.push({
           name: 'regresar al cliente',
           url : '/client/latest'
