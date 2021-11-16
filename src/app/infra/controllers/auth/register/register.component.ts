@@ -48,6 +48,7 @@ export class RegisterComponent implements OnInit {
       this.messageClass = "success"
       this.router.navigate(['/auth/login']);
     }).catch((err) => {
+      console.log(err);
       this.message = err;
       this.messageClass = "failure"
     }).finally(() => {

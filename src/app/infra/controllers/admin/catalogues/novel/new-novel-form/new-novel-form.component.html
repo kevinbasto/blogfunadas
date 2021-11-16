@@ -1,11 +1,13 @@
 <div style="width:  100%; display: grid; place-items:  center; padding-top: 1rem;">
-    <mat-card class="mat-elevation-z8 form-container" style="margin-bottom: 1em;">
+    <mat-card class="mat-elevation-z8" style="margin-bottom: 1em;">
         <h1>Crear Novela</h1>
-        <app-novel-form 
+        <div>
+            <app-novel-form 
             [novel]="novel" 
             (upload)="upload($event)" 
             [done]="done"
             (navigateBack) = "goBack()"
         ></app-novel-form>
+        </div>
     </mat-card>
 </div>

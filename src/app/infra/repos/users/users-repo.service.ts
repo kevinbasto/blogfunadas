@@ -26,7 +26,7 @@ export class UsersRepoService implements UsersRepo{
       .valueChanges()
       .pipe(take(1))
       .toPromise()
-      .then((res : any) => resolve(res.size))
+      .then((res : any) => resolve(res? res.size : 0))
       .catch(error => reject(error));
     })
   }
