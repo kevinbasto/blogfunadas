@@ -1,0 +1,14 @@
+<div style="width:  100%; display: grid; place-items:  center; padding-top: 1rem;">
+    <mat-card class="mat-elevation-z8">
+        <h1>Editar novela</h1>
+        <app-novel-form [novel]="novel" (upload)="upload($event)" [done]="done" (navigateBack)="goBack()"></app-novel-form>
+        <div style="padding-top: 1em; ">
+            <div style="width: 100%; display: flex; justify-content: flex-end; border-top:  1px dashed  #949494;">
+                <button mat-raised-button color = "primary" type="button" (click)="createChapter()" style="margin-top: 1rem;">
+                    Añadir entrada
+                </button>
+            </div>
+            <app-generic-table [dataSource]="dataSource" [inputHeaders]="chaptersColumns"></app-generic-table>
+        </div>
+    </mat-card>
+</div>

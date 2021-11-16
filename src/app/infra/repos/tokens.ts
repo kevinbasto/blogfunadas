@@ -3,6 +3,7 @@ import { ChaptersRepo } from "../../core/repos/chapters.repo";
 import { CommentsRepo } from "../../core/repos/comments.repo";
 import { GenresRepo } from "../../core/repos/genres.repo";
 import { NovelsRepo } from "../../core/repos/novels.repo";
+import { CreateNovelRepo } from "../../core/repos/novels/create-novel.repo";
 import { UsersRepo } from "../../core/repos/users.repo";
 
 export const USERS_REPO = new InjectionToken<UsersRepo>('UsersRepo');

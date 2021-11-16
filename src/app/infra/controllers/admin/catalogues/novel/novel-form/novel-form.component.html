@@ -1,7 +1,9 @@
-<div style="width:  100%; display: grid; place-items:  center; padding-top: 1rem;">
-    <mat-card class="mat-elevation-z8">
-        <h1>Novel</h1>
-        <form [formGroup]="novelForm" (submit)="submit()" >
+<div class="form-container">
+    <div *ngIf="preview" class="img-container">
+        <img src="{{preview? preview : ''}}" class="cover">
+    </div>
+    <div>
+        <form [formGroup]="novelForm" (submit)="submitForm()">
             <mat-form-field style="width: 100%;">
                 <mat-label>
                     Nombre de la novela
@@ -52,8 +54,8 @@
                 <input matInput type="text" formControlName="genre">
             </mat-form-field>
             <div formArrayName="translators">
-                <div  *ngFor="let translator of translators.controls; let  i = index" [formGroupName]="i">
-                    <mat-form-field >
+                <div *ngFor="let translator of translators.controls; let  i = index" [formGroupName]="i">
+                    <mat-form-field>
                         <mat-label>
                             Traductor
                         </mat-label>
@@ -66,7 +68,8 @@
                             ¡no puede quedar vacío!
                         </mat-error>
                     </mat-form-field>
-                    <button [disabled]="translators.at(i).disabled" style="margin-left: 5px;" mat-raised-button color="warn" (click)="deleteTranslator(i)">
+                    <button [disabled]="translators.at(i).disabled" style="margin-left: 5px;" mat-raised-button
+                        color="warn" (click)="deleteTranslator(i)">
                         eliminar
                     </button>
                 </div>
@@ -74,9 +77,33 @@
                     Agregar traductor
                 </button>
             </div>
-            <button type="submit" mat-raised-button color="primary" style="margin-top: 1rem;" [disabled]="novelForm.invalid">
-                Crear Novela
-            </button>
+            <div style="width: 100%; margin-top: 1em;">
+                <div class="dropzone" dropzone (hovered)="toggleHover($event)" (dropped)="onDrop($event)"
+                    [class.hovering]="isHovering">
+                    <h3>Arrastra aquí la portada</h3>
+                    <p> o </p>
+                    <input type="file" placeholder="o da click aquí" (change)="uploadFromButton($event)"
+                        id="coverFileLoader" style="display:none;">
+                    <label for="coverFileLoader" class="fileButton">
+                        <p style="text-align: center;">Haz click aquí para subir la imagen</p>
+                        <p style="text-align: center;">{{ file? file.name + " seleccionado" : "No hay imagen
+                            seleccionada"}}</p>
+                    </label>
+                    
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; width: 100%;">
+                <button type="button" mat-raised-button style="margin-top: 1rem;" (click)="goBack()">
+                    Regresar
+                </button>
+                <button type="submit" mat-raised-button color="primary" style="margin-top: 1rem;"
+                    [disabled]="novelForm.invalid || uploading">
+                    <span *ngIf="!uploading">
+                        Guardar
+                    </span>
+                    <mat-spinner diameter="35" *ngIf="uploading"></mat-spinner>
+                </button>
+            </div>
         </form>
-    </mat-card>
+    </div>
 </div>

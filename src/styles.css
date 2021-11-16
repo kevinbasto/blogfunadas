@@ -39,3 +39,10 @@ body {
 .error{
     color: #ff0000;
 }
+
+.card_container{
+    display: grid; 
+    place-items:  center; 
+    padding-top: 1em; 
+    width: 100vw;
+}

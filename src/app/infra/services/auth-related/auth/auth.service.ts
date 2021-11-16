@@ -38,4 +38,11 @@ export class AuthService implements Auth {
       })
     });
   }
+
+  getUid() : Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      this.afAuth.authState.pipe(take(1)).toPromise()
+      .then(auth => resolve(auth.uid));
+    })
+  }
 }

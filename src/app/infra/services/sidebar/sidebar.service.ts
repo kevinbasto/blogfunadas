@@ -40,14 +40,17 @@ export class SidebarService implements Sidebar{
   private async getMenu(appSide : string){
     let menu = this.getEmbedMenuOptions(appSide);
     await this.retrieveGenresMenu().then(menuItems => { menu = [...menu, ...menuItems]});
-    menu.map((element : MenuItem) => { element.url = `/${appSide}/${element.url}` })
+    menu.map((element : MenuItem) => { 
+      if(!element.url.includes(appSide))
+        element.url = `/${appSide}/${element.url}`
+    })
     await this.auth.getProfileRole().then(role => {
       if(role != "reader" && appSide == "client")
         menu.push({
           name: "ir al admin",
           url : "/admin/dashboard"
         })
-      else
+      else if(role != "reader")
         menu.push({
           name: 'regresar al cliente',
           url : '/client/latest'
@@ -118,5 +121,9 @@ export class SidebarService implements Sidebar{
     this.afAuth.signOut()
     .then(() => this.router.navigate(['/auth/login']))
     .catch(error => {});
+  }
+
+  deleteSidebarElements(){
+    window.localStorage.removeItem("genres")
   }
 }

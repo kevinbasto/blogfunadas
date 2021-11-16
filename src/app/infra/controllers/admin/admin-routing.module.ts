@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { GuardsModule } from '../../guards/guards.module';
+import { AdminGuard } from '../../guards/roles/admin/admin.guard';
 
 const routes : Routes = [
   {
@@ -14,7 +16,8 @@ const routes : Routes = [
   },
   {
     path: 'genres',
-    loadChildren: () => import('./genres/genres.module').then(m => m.GenresModule)
+    loadChildren: () => import('./genres/genres.module').then(m => m.GenresModule),
+    canActivateChild : [AdminGuard]
   },
   {
     path: 'policies',
@@ -39,6 +42,7 @@ const routes : Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    GuardsModule
   ]
 })
 export class AdminRoutingModule { }

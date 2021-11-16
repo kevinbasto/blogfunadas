@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     this.uploading = true;
     this.loginService.emailLogin(this.loginData)
     .then( (res : SystemMessage) => this.message = res)
-    .catch( (error : SystemMessage) => { console.log(error, "test"); this.message = error})
+    .catch( (error : SystemMessage) => {this.message = error})
     .finally(() => this.ProcessAfterMessage())
   }
 

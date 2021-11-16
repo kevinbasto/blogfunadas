@@ -28,7 +28,7 @@ export class RolesGuard implements CanActivateChild {
       .catch(() => this.router.navigate(['/client/latest']));
       this.firestore.doc(`/users/${uid}`).valueChanges().pipe(take(1)).toPromise()
       .then( (user : any) => {
-        if(user.role != 'staff')
+        if(user.role == 'reader')
           this.router.navigate(['/client/latest'])
         else
           resolve(true)
