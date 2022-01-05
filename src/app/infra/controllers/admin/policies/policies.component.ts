@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TersmHeaders } from '../../../../core/constants/headers';
+import { TableHeader } from '../../../../core/interfaces/table-header';
 
 @Component({
   selector: 'app-policies',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PoliciesComponent implements OnInit {
 
-  constructor() { }
+  public dataSource : string;
+  public columns : Array<TableHeader> = TersmHeaders
+
+  constructor() {
+    this.dataSource = "terms"
+  }
 
   ngOnInit(): void {
   }

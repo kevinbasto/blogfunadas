@@ -1,1 +1,15 @@
-<p>policies works!</p>
+<div style="display: grid; place-items: center; padding-top: 1em; width:  100vw;">
+    <mat-card class="mat-elevation-z8">
+        <div>
+            <h1 style="text-align: center;">
+                Políticas de uso de la página
+            </h1>
+        </div>
+        <div style="width: 100%; display: flex; justify-content: flex-end;">
+            <button mat-raised-button color="primary">
+                Actualizar políticas
+            </button>
+        </div>
+        <app-generic-table [dataSource]="dataSource" [inputHeaders]="columns"></app-generic-table>
+    </mat-card>
+</div>
