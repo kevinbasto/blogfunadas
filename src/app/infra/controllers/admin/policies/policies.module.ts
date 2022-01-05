@@ -13,6 +13,14 @@ const routes : Routes = [
   {
     path: '',
     component: PoliciesComponent
+  },
+  {
+    path: 'new',
+    component: NewPoliciesFormComponent
+  },
+  {
+    path: ':id',
+    component: EditPoliciesFormComponent
   }
 ]
 
