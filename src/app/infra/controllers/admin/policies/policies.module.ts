@@ -8,6 +8,8 @@ import { ComponentsModule } from '../../../components/components.module';
 import { PoliciesFormComponent } from './policies-form/policies-form.component';
 import { NewPoliciesFormComponent } from './new-policies-form/new-policies-form.component';
 import { EditPoliciesFormComponent } from './edit-policies-form/edit-policies-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 const routes : Routes = [
   {
@@ -36,7 +38,9 @@ const routes : Routes = [
     RouterModule.forChild(routes),
     MatCardModule,
     MatButtonModule,
-    ComponentsModule
+    ComponentsModule,
+    ReactiveFormsModule,
+    MatInputModule
   ]
 })
 export class PoliciesModule { }

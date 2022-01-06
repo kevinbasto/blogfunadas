@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-policies-form',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PoliciesFormComponent implements OnInit {
 
-  constructor() { }
+  termsForm : FormGroup;
+
+  constructor(
+    private builder : FormBuilder
+  ) { }
 
   ngOnInit(): void {
   }
