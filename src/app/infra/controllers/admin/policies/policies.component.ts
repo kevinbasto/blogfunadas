@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TersmHeaders } from '../../../../core/constants/headers';
 import { TableHeader } from '../../../../core/interfaces/table-header';
 
@@ -12,11 +13,17 @@ export class PoliciesComponent implements OnInit {
   public dataSource : string;
   public columns : Array<TableHeader> = TersmHeaders
 
-  constructor() {
+  constructor(
+    private router : Router
+  ) {
     this.dataSource = "terms"
   }
 
   ngOnInit(): void {
+  }
+
+  addNew(){
+    this.router.navigate([`${this.router.url}/new`])
   }
 
 }
