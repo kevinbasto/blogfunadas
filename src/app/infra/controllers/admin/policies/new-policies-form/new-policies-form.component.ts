@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Terms } from '../../../../../core/interfaces/terms.interface';
+import { Policies } from '../../../../../core/interfaces/terms.interface';
+import { CreatePolicyService } from '../services/create-policy/create-policy.service';
 
 @Component({
   selector: 'app-new-policies-form',
@@ -8,12 +9,14 @@ import { Terms } from '../../../../../core/interfaces/terms.interface';
 })
 export class NewPoliciesFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private createPoliciy : CreatePolicyService
+  ) { }
 
   ngOnInit(): void {
   }
 
-  submit(data : Terms){
-    console.log(data);
+  submit(data : Policies){
+    this.createPoliciy.savePolicies(data);
   }
 }

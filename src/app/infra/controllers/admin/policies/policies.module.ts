@@ -7,7 +7,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { ComponentsModule } from '../../../components/components.module';
 import { PoliciesFormComponent } from './policies-form/policies-form.component';
 import { NewPoliciesFormComponent } from './new-policies-form/new-policies-form.component';
-import { EditPoliciesFormComponent } from './edit-policies-form/edit-policies-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 
@@ -19,10 +18,6 @@ const routes : Routes = [
   {
     path: 'new',
     component: NewPoliciesFormComponent
-  },
-  {
-    path: ':id',
-    component: EditPoliciesFormComponent
   }
 ]
 
@@ -31,7 +26,6 @@ const routes : Routes = [
     PoliciesComponent,
     PoliciesFormComponent,
     NewPoliciesFormComponent,
-    EditPoliciesFormComponent
   ],
   imports: [
     CommonModule,

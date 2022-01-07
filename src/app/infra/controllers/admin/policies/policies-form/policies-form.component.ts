@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Terms } from '../../../../../core/interfaces/terms.interface';
+import { Router } from '@angular/router';
+import { Policies } from '../../../../../core/interfaces/terms.interface';
 
 @Component({
   selector: 'app-policies-form',
@@ -11,10 +12,11 @@ export class PoliciesFormComponent implements OnInit {
 
   termsForm : FormGroup;
 
-  @Output() termsData = new EventEmitter<Terms>();
+  @Output() termsData = new EventEmitter<Policies>();
 
   constructor(
-    private builder : FormBuilder
+    private builder : FormBuilder,
+    private router : Router
   ) {
     this.termsForm = this.builder.group({
       date : [""],
@@ -26,7 +28,11 @@ export class PoliciesFormComponent implements OnInit {
   }
 
   submit(){
-    let terms : Terms = this.termsForm.value;
+    let terms : Policies = this.termsForm.value;
     this.termsData.emit(terms);
+  }
+
+  goBack(){
+    this.router.navigate([`/admin/policies`]);
   }
 }

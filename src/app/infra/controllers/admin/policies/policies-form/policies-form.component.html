@@ -12,7 +12,7 @@
         <textarea matInput rows="10" style="width: 100%;" formControlName="content"></textarea>
     </mat-form-field>
     <div style="display: flex; width: 100%; justify-content: space-between;">
-        <button mat-raised-button type="button">
+        <button mat-raised-button type="button" (click)="goBack()">
             Cancelar
         </button>
         <button mat-raised-button color="primary" type="submit">
