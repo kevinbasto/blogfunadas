@@ -5,6 +5,6 @@
                 Añadir Términos y condiciones
             </h1>
         </div>
-        <app-policies-form></app-policies-form>
+        <app-policies-form (termsData)="submit($event)"></app-policies-form>
     </mat-card>
 </div>
